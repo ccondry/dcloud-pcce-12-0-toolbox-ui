@@ -51,7 +51,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      title: 'dCloud Cisco Webex Contact Center Demo',
+      title: 'dCloud PCCE 12.0 Instant Demo',
       filename: process.env.NODE_ENV === 'testing'
         ? 'index.html'
         : config.build.index,

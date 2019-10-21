@@ -32,7 +32,7 @@ module.exports = merge(baseWebpackConfig, {
     }),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      title: 'dCloud Cisco Webex Contact Center Demo',
+      title: 'dCloud PCCE 12.0 Instant Demo',
       template: 'index.html',
       inject: true,
       favicon: 'client/assets/logo.png'

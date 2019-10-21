@@ -7,9 +7,9 @@ if [ $? -eq 0 ]; then
   if [ $? -eq 0 ]; then
     echo "npm build successful"
     echo "making web files directory"
-    mkdir -p /var/www/toolbox/cwcc
+    mkdir -p /var/www/toolbox/pcce-12-0
     echo "copying new web files"
-    cp -rf dist/* /var/www/toolbox/cwcc/
+    cp -rf dist/* /var/www/toolbox/pcce-12-0/
   else
     echo "npm failed to run build script"
   fi

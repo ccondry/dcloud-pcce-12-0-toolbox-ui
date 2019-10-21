@@ -1,8 +1,8 @@
 {
-  "name": "pcce-12.0-toolbox-ui",
+  "name": "pcce-12-0-toolbox-ui",
   "version": "0.1.0",
   "description": "dCloud Collaboration Toolbox UI for PCCE 12.0 demo",
-  "repository": "dcloud-collab/pcce-12.0-toolbox-ui",
+  "repository": "dcloud-collab/pcce-12-0-toolbox-ui",
   "license": "UNLICENSED",
   "author": {
     "name": "Coty Condry",

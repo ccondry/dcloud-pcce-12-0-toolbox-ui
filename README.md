@@ -3,8 +3,8 @@ This is the website UI code for the dCloud Cisco Webex Contact Center Toolbox.
 
 ## Installation
 ```sh
-git clone https://gitlab.com/dcloud-collab/cwcc-toolbox-ui.git
-cd cwcc-toolbox-ui
+git clone https://gitlab.com/dcloud-collab/pcce-12-0-toolbox-ui.git
+cd pcce-12-0-toolbox-ui
 npm install
 ```
 
@@ -17,5 +17,5 @@ npm run dev
 Copy files to your www/html folder (or wherever you have your web server pointing to).
 ```sh
 npm run build
-cp cwcc-toolbox-ui/dist/* /var/www/html/
+cp pcce-12-0-toolbox-ui/dist/* /var/www/html/
 ```
