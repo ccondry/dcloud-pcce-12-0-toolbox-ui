@@ -21,7 +21,7 @@ const actions = {
     // metadata
     const group = 'webex'
     const type = 'invite'
-    const action = 'Add user to the CWCC Demo Support Webex Teams room'
+    const action = 'Add user to the PCCE 12.0 Demo Support Webex Teams room'
     // set working state on
     dispatch('setWorking', {group, type, value: true})
     console.log('starting', action, 'using email', email, '...')

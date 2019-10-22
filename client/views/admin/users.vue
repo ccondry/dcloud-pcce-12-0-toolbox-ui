@@ -58,7 +58,7 @@
                   <!-- <th>Provisioned For</th> -->
                   <!-- <th>Last Login</th> -->
                   <!-- <th>Last Failed Login</th> -->
-                  <th>CWCC Demo Configuration</th>
+                  <th>Demo Configuration</th>
                   <th>Actions</th>
                   <!-- <th class="is-hidden-mobile">Internal DNIS</th> -->
                 </tr>
@@ -90,12 +90,11 @@
                   <!-- <td>{{ user.lastLogin | moment("from") }}</td> -->
                   <!-- <td>{{ user.lastFailedLogin  | moment("from") }}</td> -->
                   <td>
-                    <span v-if="user.demo && user.demo.cwcc">
-                      <!-- <input placeholder="vertical" v-model="user.demo.cwcc.vertical" /> -->
-                      <input placeholder="tenantId" v-model="user.demo.cwcc.tenantId" />
-                      <input placeholder="reasonId" v-model="user.demo.cwcc.reasonId" />
+                    <span v-if="user.demo && user.demo[demoConfigId]">
+                      <input placeholder="tenantId" v-model="user.demo[demoConfigId].tenantId" />
+                      <input placeholder="reasonId" v-model="user.demo[demoConfigId].reasonId" />
                       <button class="button is-success" @click.prevent="clickUpdateConfig(user)">
-                        Save CWCC Demo Config
+                        Save Demo Config
                       </button>
                     </span>
                     <span v-else>
@@ -124,13 +123,13 @@ import Vue from 'vue'
 const UserRow = Vue.component('UserRow', {
   props: ['user', 'provision', 'instance'],
   computed: {
-    // get list of CWCC v1 instances user is provisioned for
+    // get list of instances user is provisioned for
     // TODO put version and demo type in state
     myProvision () {
       return this.provision.filter(v => {
         return v.username === this.user.username &&
-        v.version === 'v1' &&
-        v.demo === 'cwcc'
+        v.version === '12.0v2' &&
+        v.demo === 'pcce'
       })
     }
   }
@@ -171,10 +170,10 @@ export default {
     },
     clickUpdateConfig (user) {
       console.log('clickUpdateConfig - updating user', user)
-      // update target user with their new cwcc data in the form
+      // update target user with their new demo data in the form
       this.updateUser({
         user,
-        body: user.demo.cwcc
+        body: user.demo[demoConfigId]
       })
     },
     clickConfigure (user) {
@@ -182,19 +181,19 @@ export default {
       if (!user.demo) {
         Vue.set(user, 'demo', {})
       }
-      if (!user.demo.cwcc) {
-        Vue.set(user.demo, 'cwcc', {})
+      if (!user.demo[this.demoConfigId]) {
+        Vue.set(user.demo, this.demoConfigId, {})
       }
-      if (!user.demo.cwcc.vertical) {
-        Vue.set(user.demo.cwcc, 'vertical', '')
+      if (!user.demo[this.demoConfigId].vertical) {
+        Vue.set(user.demo[this.demoConfigId], 'vertical', '')
       }
-      if (!user.demo.cwcc.tenantId) {
-        Vue.set(user.demo.cwcc, 'tenantId', '')
+      if (!user.demo[this.demoConfigId].tenantId) {
+        Vue.set(user.demo[this.demoConfigId], 'tenantId', '')
       }
-      if (!user.demo.cwcc.reasonId) {
-        Vue.set(user.demo.cwcc, 'reasonId', '')
+      if (!user.demo[this.demoConfigId].reasonId) {
+        Vue.set(user.demo[this.demoConfigId], 'reasonId', '')
       }
-      console.log('user is now configured for cwcc:', user)
+      console.log('user is now configured for', this.demoConfigId, ':', user)
     }
   },
   computed: {
@@ -203,7 +202,8 @@ export default {
       'userProvisionMap',
       'instance',
       'currentInstance',
-      'loading'
+      'loading',
+      'demoConfigId'
     ]),
     sortedUsers () {
       return this.model

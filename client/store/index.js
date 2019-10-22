@@ -14,7 +14,7 @@ const store = new Vuex.Store({
   getters,
   modules,
   state: {
-    demoConfigId: 'cwcc',
+    demoConfigId: 'pcce-12-0',
     isProduction: process.env.NODE_ENV === 'production',
     endpointsLoaded: false,
     endpoints: {},

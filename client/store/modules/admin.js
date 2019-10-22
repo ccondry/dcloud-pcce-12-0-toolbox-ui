@@ -79,8 +79,8 @@ const actions = {
     try {
       dispatch('setWorking', {group: 'admin', type, value: true})
       const endpoint = getters.endpoints.admin.user + '/' + user.id
-      // updating only the cwcc demo portion of user data from here
-      await post(getters.instance, getters.jwt, endpoint, {demo: 'cwcc'}, body)
+      // updating only the pcce-12-0 demo portion of user data from here
+      await post(getters.instance, getters.jwt, endpoint, {demo: 'pcce-12-0'}, body)
       // reload new user data using JWT
       if (showNotification) {
         dispatch('successNotification', `Successfully updated user ${user.username}`)

@@ -1,6 +1,6 @@
 import lazyLoading from './lazyLoading'
 
-const path = '/cwcc/main'
+const path = '/pcce-12-0/main'
 
 export default {
   name: 'Main',

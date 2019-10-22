@@ -15,7 +15,7 @@ export default new Router({
     ...generateRoutesFromMenu(menuModule.state.items),
     {
       path: '*',
-      redirect: '/cwcc/main/home'
+      redirect: '/pcce-12-0/main/home'
     }
   ]
 })

@@ -123,11 +123,6 @@ export const SET_PROVISION_STATUS = 'SET_PROVISION_STATUS'
 // demo selectors
 export const SET_DEMO_SELECTORS = 'SET_DEMO_SELECTORS'
 
-// CWCC instant demo session instances
-// export const SET_INSTANCE = 'SET_INSTANCE'
-// export const SET_INSTANCES = 'SET_INSTANCES'
-// export const SET_INSTANCES_LOADED = 'SET_INSTANCES_LOADED'
-
 // API tokens
 export const SET_TOKENS = 'SET_TOKENS'
 
