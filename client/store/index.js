@@ -8,16 +8,40 @@ import modules from './modules'
 
 Vue.use(Vuex)
 
+const isProduction = process.env.NODE_ENV === 'production'
+
+let urlBase = '/api/v1/auth'
+if (!isProduction) {
+  urlBase = 'http://localhost:3032/api/v1/auth'
+}
+
 const store = new Vuex.Store({
-  strict: process.env.NODE_ENV !== 'production',
+  // strict mode in development only
+  strict: !isProduction,
   actions,
   getters,
   modules,
   state: {
     demoConfigId: 'pcce-12-0',
-    isProduction: process.env.NODE_ENV === 'production',
-    endpointsLoaded: false,
-    endpoints: {},
+    isProduction,
+    endpoints: {
+      // add REST API endpoints here
+      login: urlBase + '/login',
+      logout: urlBase + '/logout',
+      admin: {
+        users: urlBase + '/admin/users',
+        user: urlBase + '/admin/user',
+        userProvisionMap: urlBase + '/provision',
+        su: urlBase + '/su'
+      },
+      userDemo: urlBase + '/user/demo',
+      user: urlBase + '/user',
+      lockUser: urlBase + '/lock',
+      unlockUser: urlBase + '/unlock',
+      addSupport: urlBase + '/add-support',
+      removeSupport: urlBase + '/remove-support'
+    },
+    instance: 'RTP-1',
     pkg,
     working: {
       admin: {},

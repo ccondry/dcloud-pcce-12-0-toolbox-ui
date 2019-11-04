@@ -80,8 +80,7 @@ export default {
       'authEnabled',
       'authenticated',
       'loading',
-      'endpoints',
-      'endpointsLoaded'
+      'endpoints'
     ])
   },
 
@@ -117,6 +116,10 @@ export default {
             // development - pop JWT form
             this.clickLogin()
           }
+        } else {
+          // user is authenticated
+          // check provision status
+          await this.getProvisionStatus()
         }
       } catch (e) {
         console.log('failed to get endpoints and check login:', e.message)

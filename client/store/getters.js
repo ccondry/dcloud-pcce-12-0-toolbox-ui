@@ -9,5 +9,6 @@ export const authEnabled = state => true
 export const loading = state => state.loading
 export const working = state => state.working
 export const endpoints = state => state.endpoints
-export const endpointsLoaded = state => state.endpointsLoaded
 export const demoConfigId = state => state.demoConfigId
+// demo instance, like RTP-1
+export const instance = state => state.instance
