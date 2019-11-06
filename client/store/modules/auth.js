@@ -39,6 +39,12 @@ const actions = {
   },
   setJwt ({commit}, data) {
     console.log('setting JWT in localStorage and state')
+    // trim input data
+    data = data.trim()
+    if (data.indexOf('Bearer ') === 0) {
+      // remove Bearer prefix word
+      data = data.substring('Bearer '.length)
+    }
     commit(types.SET_JWT, data)
     // set authToken in localStorage also
     window.localStorage.setItem('jwt', data)
