@@ -10,9 +10,11 @@ Vue.use(Vuex)
 
 const isProduction = process.env.NODE_ENV === 'production'
 
-let urlBase = '/api/v1/auth'
+let authUrlBase = '/api/v1/auth'
+let urlBase = '/api/v1/pcce-12-0'
 if (!isProduction) {
-  urlBase = 'http://localhost:3032/api/v1/auth'
+  authUrlBase = 'http://localhost:3032/api/v1/auth'
+  urlBase = 'http://localhost:3053/api/v1/pcce-12-0'
 }
 
 const store = new Vuex.Store({
@@ -26,20 +28,20 @@ const store = new Vuex.Store({
     isProduction,
     endpoints: {
       // add REST API endpoints here
-      login: urlBase + '/login',
-      logout: urlBase + '/logout',
+      login: authUrlBase + '/login',
+      logout: authUrlBase + '/logout',
       admin: {
-        users: urlBase + '/admin/users',
-        user: urlBase + '/admin/user',
-        userProvisionMap: urlBase + '/provision',
-        su: urlBase + '/su'
+        users: authUrlBase + '/admin/users',
+        user: authUrlBase + '/admin/user',
+        userProvisionMap: authUrlBase + '/provision',
+        su: authUrlBase + '/su'
       },
-      userDemo: urlBase + '/user/demo',
-      user: urlBase + '/user',
-      lockUser: urlBase + '/lock',
-      unlockUser: urlBase + '/unlock',
-      addSupport: urlBase + '/add-support',
-      removeSupport: urlBase + '/remove-support',
+      userDemo: authUrlBase + '/user/demo',
+      user: authUrlBase + '/user',
+      lockUser: authUrlBase + '/lock',
+      unlockUser: authUrlBase + '/unlock',
+      addSupport: authUrlBase + '/add-support',
+      removeSupport: authUrlBase + '/remove-support',
       provision: urlBase + '/provision'
     },
     instance: 'RTP-1',
