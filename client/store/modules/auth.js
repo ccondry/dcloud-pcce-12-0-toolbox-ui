@@ -92,49 +92,6 @@ const actions = {
       console.log(e.message)
     }
   },
-  async login ({getters, dispatch}, data) {
-    dispatch('setWorking', {group: 'app', type: 'login', value: true})
-    // store a local copy of user/pass
-    let username = data.username
-    let password = data.password
-    // try login request
-    try {
-      const response = await axios.post(getters.endpoints.login, {
-        username,
-        password
-      })
-      // console.log(response)
-      // if successful
-      if (response.status >= 200 && response.status < 300) {
-        // store auth token in localStorage
-        dispatch('setJwt', response.data.jwt)
-
-        dispatch('successNotification', {
-          title: `Logged in Successfully`,
-          message: ''
-        })
-
-        // load user data using JWT
-        // dispatch('loadUser')
-        // load the session details - dCloud only
-        // dispatch('getSession')
-      } else {
-        dispatch('errorNotification', {
-          title: `Login Failed`,
-          message: `${response.status} ${response.statusText}`
-        })
-      }
-    } catch (error) {
-      console.log(error)
-      dispatch('errorNotification', {
-        title: `Login Failed`,
-        message: `${error.response.status} ${error.response.statusText}`
-      })
-      throw error
-    } finally {
-      dispatch('setWorking', {group: 'app', type: 'login', value: false})
-    }
-  },
   async checkLogin ({getters, dispatch, commit, rootState}) {
     console.log('checking localstorage for JWT login token')
     // retrieve auth token from localStorage
