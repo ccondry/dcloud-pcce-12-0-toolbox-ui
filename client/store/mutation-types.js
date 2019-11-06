@@ -14,7 +14,7 @@ export const SET_LOADING = 'SET_LOADING'
 
 // app
 export const SET_ENDPOINTS = 'SET_ENDPOINTS'
-export const SET_ENDPOINTS_LOADED = 'SET_ENDPOINTS_LOADED'
+// export const SET_ENDPOINTS_LOADED = 'SET_ENDPOINTS_LOADED'
 
 // user
 export const SET_JWT = 'SET_JWT'
