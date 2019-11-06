@@ -39,7 +39,8 @@ const store = new Vuex.Store({
       lockUser: urlBase + '/lock',
       unlockUser: urlBase + '/unlock',
       addSupport: urlBase + '/add-support',
-      removeSupport: urlBase + '/remove-support'
+      removeSupport: urlBase + '/remove-support',
+      provision: urlBase + '/provision'
     },
     instance: 'RTP-1',
     pkg,
