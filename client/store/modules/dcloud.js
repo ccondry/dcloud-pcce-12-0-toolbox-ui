@@ -22,8 +22,11 @@ const mutations = {
 }
 
 const getters = {
-  dcloudSession: state => state.session || {},
-  sessionId: (state, getters) => getters.dcloudSession.id,
+  dcloudSession: state => {
+    // console.log(state.session)
+    return state.session || {}
+  },
+  sessionId: (state, getters) => getters.dcloudSession.sessionId,
   datacenter: (state, getters) => getters.dcloudSession.datacenter,
   brandDemoLink (state, getters) {
     return `https://mm-brand.cxdemo.net?session=${getters.sessionId}&datacenter=${getters.datacenter}&userId=${getters.user.id}`
@@ -70,7 +73,7 @@ const actions = {
       dispatch('setLoading', {group: 'app', type: 'session', value: false})
     }
   },
-  async getInstances ({getters, commit, dispatch}, showNotification = true) {
+  async getInstances ({getters, commit, dispatch}, showNotification = false) {
     console.log('getInstances...')
     dispatch('setLoading', {group: 'app', type: 'instances', value: true})
     try {

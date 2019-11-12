@@ -9,7 +9,8 @@
             <div class="level-item">
               <p>
                 <a href="/">dCloud Toolbox</a>
-                - Cisco Webex Contact Center
+                - Packaged Contact Center Enterprise 12.0 v1
+                - Instant Demo
               </p>
             </div>
           </nav>
@@ -109,8 +110,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~bulma/bulma';
-@import '~bulma/sass/utilities/variables';
+// @import '~bulma/bulma';
+// @import '~bulma/sass/utilities/variables';
 
 .app-navbar {
   color: #28374B;

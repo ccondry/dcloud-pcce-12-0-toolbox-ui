@@ -87,7 +87,10 @@
             <h1 class="title">
               Demo Website
             </h1>
-            <div class="content">
+            <div v-if="!verticals.length">
+              Loading...
+            </div>
+            <div class="content" v-if="verticals.length">
               <div class="select">
                 <select class="input" v-model="vertical" @change="verticalChanged" :disabled="working.app.user">
                   <option value="" disabled selected>Choose Your Demo Vertical</option>
@@ -100,8 +103,8 @@
               </div>
               &nbsp;
               <button class="button is-success" @click="clickGo" :disabled="working.app.user">Go to Demo Website</button>
-              &nbsp;
-              <span style="font-size: 1.3em;">Or for quick access, call {{ working.app.user ? 'Loading...' : demoNumber }}</span>
+              <!-- &nbsp; -->
+              <!-- <span style="font-size: 1.3em;">Or for quick access, call {{ working.app.user ? 'Loading...' : demoNumber }}</span> -->
               <b-field>
                 <b-checkbox v-model="showMore">Show More</b-checkbox>
               </b-field>
@@ -208,7 +211,7 @@ export default {
       // await this.loadDemoConfig(false)
     },
     clickGo (e) {
-      console.log('user clicked button to go to demo website')
+      console.log('user clicked button to go to demo website. going to', this.brandDemoLink)
       window.open(this.brandDemoLink, 'brand')
     },
     showDialog (event) {
@@ -227,26 +230,46 @@ export default {
         }
       })
     },
-    async clickProvision () {
+    clickProvision () {
       console.log('user clicked Provision Me button')
-      try {
-        await this.provisionUser()
-        // after provision starts, notify the user they need to request
-        // manual chat provisioning
-        this.$buefy.dialog.alert({
-          title: 'Contact Support for Chat Provisioning',
-          message: `Please send a message to the Webex Teams support room
-          to request chat provisioning, including your 4-digit user ID.
-          Please allow 24-48 hours for this to be completed by the support team.
-          You will not be able to log in your agents to the demo until
-          provisioning is completed by the support team.`,
-          type: 'is-default',
-          confirmText: 'Ok'
-        })
-      } catch (e) {
-        throw e
+      // TODO prompt user if they are already provisioned in another active
+      // datacenter
+      // skip prompt for admins using switch-user
+      if (this.user.suJwt) {
+        this.provisionUser({password: 'ignore'})
+        return
       }
+      this.$buefy.dialog.prompt({
+        message: `Please enter your Toolbox password to provision your PCCE demo:`,
+        inputAttrs: {
+          placeholder: 'your dCloud Toolbox password',
+          type: 'password'
+        },
+        onConfirm: (password) => {
+          this.provisionUser({password})
+        }
+      })
     },
+    // async clickProvision () {
+    //   console.log('user clicked Provision Me button')
+    //   try {
+    //     await this.provisionUser()
+    //     // after provision starts, notify the user they need to request
+    //     // manual chat provisioning
+    //     this.$buefy.dialog.alert({
+    //       title: 'Contact Support for Chat Provisioning',
+    //       message: `Please send a message to the Webex Teams support room
+    //       to request chat provisioning, including your 4-digit user ID.
+    //       Please allow 24-48 hours for this to be completed by the support team.
+    //       You will not be able to log in your agents to the demo until
+    //       provisioning is completed by the support team.`,
+    //       type: 'is-default',
+    //       confirmText: 'Ok'
+    //     })
+    //   } catch (e) {
+    //     throw e
+    //   }
+    // },
     getDid (name) {
       try {
         return this.dcloudSession.dids.find(v => v.name === name).number

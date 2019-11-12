@@ -10,15 +10,24 @@
             <p class="subtitle">{{ agent.role }}</p>
             <img :src="agent.picture" width="128px">
             <p>
-              <strong>Username: {{ agent.username }}</strong>
+              <strong>Username:</strong>
+              <span class="grey-background">
+                {{ agent.username }}
+              </span>
               <a @click="clickCopy(agent.username, 'Username')"><b-icon icon="layers"></b-icon></a>
             </p>
             <p>
-              <strong>Password: {{ agent.password }}</strong>
+              <strong>Password:</strong>
+              <span class="grey-background">
+                {{ agent.password }}
+              </span>
               <a @click="clickCopy(agent.password, 'Password')"><b-icon icon="layers"></b-icon></a>
             </p>
             <p>
-              <strong>Extension: {{ agent.extension }}</strong>
+              <strong>Extension:</strong>
+              <span class="grey-background">
+                {{ agent.extension }}
+              </span>
               <a @click="clickCopy(agent.extension, 'Extension')"><b-icon icon="layers"></b-icon></a>
             </p>
           </article>
@@ -26,15 +35,15 @@
 
       </div>
     </div>
-    <center>
-      <b-field>
-        <button class="button is-success" @click="clickPortal">Go to Webex Contact Center Portal</button>
-      </b-field>
-    </center>
+    <!-- <center>
+    <b-field>
+    <button class="button is-success" @click="clickPortal">Go to Webex Contact Center Portal</button>
+  </b-field>
+</center> -->
 
-    <input type="hidden" id="clipboard" :value="clipboard">
+<input type="hidden" id="clipboard" :value="clipboard">
 
-  </div>
+</div>
 </template>
 
 
@@ -58,6 +67,14 @@ export default {
           password: 'C1sco12345',
           extension: '1080' + this.user.id,
           name: 'Sandra Jefferson',
+          role: 'Agent'
+        },
+        {
+          picture: 'https://mm.cxdemo.net/static/images/cumulus/common/author2.png',
+          username: 'jopeters' + this.user.id + '@dcloud.cisco.com',
+          password: 'C1sco12345',
+          extension: '1081' + this.user.id,
+          name: 'Josh Peterson',
           role: 'Agent'
         },
         {
@@ -105,3 +122,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.grey-background {
+  background-color: rgb(240, 240, 240);
+}
+</style>
