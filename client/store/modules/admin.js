@@ -58,7 +58,7 @@ const actions = {
     try {
       dispatch('setWorking', {group: 'admin', type: 'su', value: true})
       const endpoint = getters.endpoints.admin.su
-      const response = await post(getters.instance, getters.jwt, endpoint, null, {username: user.username})
+      const response = await post(getters.instanceName, getters.jwt, endpoint, null, {username: user.username})
       // store auth token in localStorage
       dispatch('setJwt', response.data.jwt)
 
@@ -80,7 +80,7 @@ const actions = {
       dispatch('setWorking', {group: 'admin', type, value: true})
       const endpoint = getters.endpoints.admin.user + '/' + user.id
       // updating only the pcce-12-0 demo portion of user data from here
-      await post(getters.instance, getters.jwt, endpoint, {demo: 'pcce-12-0'}, body)
+      await post(getters.instanceName, getters.jwt, endpoint, {demo: 'pcce-12-0'}, body)
       // reload new user data using JWT
       if (showNotification) {
         dispatch('successNotification', `Successfully updated user ${user.username}`)

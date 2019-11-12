@@ -42,18 +42,28 @@
         <!-- user not provisioned - show provision button -->
         <div class="tile is-parent is-12">
           <article class="tile is-child box">
-            <h1 class="title">Start</h1>
-            <b-field>
+            <!-- provisioning is not enabled for this instance -->
+            <div v-if="provisioningDisabled">
               <p>
-                Your account is not provisioned for this demo yet. Would you like
-                to provision it now?
+                Provisioning is currently disabled in this instance. Please try using
+                another dCloud datacenter at this time.
               </p>
-            </b-field>
-            <b-field>
-              <button class="button is-success" @click.prevent="clickProvision" :disabled="working.user.provision">
-                {{ working.user.provision ? 'Working...' : 'Yes, Provision Me' }}
-              </button>
-            </b-field>
+            </div>
+            <!-- provisioning is enabled for this instance -->
+            <div v-if="!provisioningDisabled">
+              <h1 class="title">Start</h1>
+              <b-field>
+                <p>
+                  Your account is not provisioned for this demo yet. Would you like
+                  to provision it now?
+                </p>
+              </b-field>
+              <b-field>
+                <button class="button is-success" @click.prevent="clickProvision" :disabled="working.user.provision">
+                  {{ working.user.provision ? 'Working...' : 'Yes, Provision Me' }}
+                </button>
+              </b-field>
+            </div>
           </article>
         </div>
       </div>
@@ -255,7 +265,8 @@ export default {
       'verticals',
       'brandDemoLink',
       'dcloudSession',
-      'demoConfig'
+      'demoConfig',
+      'provisioningDisabled'
     ]),
     demoNumber () {
       switch (this.vertical) {

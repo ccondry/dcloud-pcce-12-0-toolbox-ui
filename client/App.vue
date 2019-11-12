@@ -64,12 +64,6 @@ export default {
       if (this.authenticated === true) {
         // get their provision status
         this.getProvisionStatus(false)
-        // and get dcloud session info
-        this.getDcloudSession(false)
-        // and get verticals list
-        this.loadVerticals(false)
-        // and get user demo config
-        this.loadDemoConfig(false)
       }
     })
   },
@@ -77,10 +71,12 @@ export default {
   computed: {
     ...mapGetters([
       'sidebar',
-      'authEnabled',
       'authenticated',
       'loading',
-      'endpoints'
+      'endpoints',
+      'isProvisioned',
+      'instances',
+      'instance'
     ])
   },
 
@@ -93,6 +89,7 @@ export default {
       'setJwt',
       'getProvisionStatus',
       'loadVerticals',
+      'getInstances',
       'loadDemoConfig'
     ]),
     async authCheck () {
@@ -113,8 +110,8 @@ export default {
           }
         } else {
           // user is authenticated
-          // check provision status
-          await this.getProvisionStatus()
+          // get instances of PCCE 12 demo
+          this.getInstances()
         }
       } catch (e) {
         console.log('failed to get endpoints and check login:', e.message)
@@ -143,6 +140,24 @@ export default {
           // development - pop JWT form
           this.clickLogin()
         }
+      }
+    },
+    isProvisioned (val, oldVal) {
+      // if user is provisioned
+      if (oldVal === false && val === true) {
+        // get dcloud session info
+        this.getDcloudSession(false)
+        // and get verticals list
+        this.loadVerticals(false)
+        // and get user demo config
+        this.loadDemoConfig(false)
+      }
+    },
+    instance (val, oldVal) {
+      if (val) {
+        // instance found
+        // now load provision status
+        this.getProvisionStatus()
       }
     }
   }

@@ -33,7 +33,7 @@ const actions = {
         // if ID is specified, append to URL
         endpoint = endpoint + '/' + data.id
       }
-      const response = await put(getters.instance, getters.jwt, endpoint, null, data)
+      const response = await put(getters.instanceName, getters.jwt, endpoint, null, data)
       console.log('saved', data.type, 'template:', response)
       dispatch('successNotification', 'Successfully saved ' + data.type + ' template')
       // load updated template list
@@ -55,7 +55,7 @@ const actions = {
     console.log('loading', type, 'templates')
     try {
       const endpoint = formatUnicorn(getters.endpoints.templates, type)
-      const response = await load(getters.instance, getters.jwt, endpoint)
+      const response = await load(getters.instanceName, getters.jwt, endpoint)
       console.log('load', type, 'templates:', response)
       commit(types.SET_TEMPLATES, {type, data: response.data})
       if (showNotification) {
@@ -75,7 +75,7 @@ const actions = {
     try {
       const endpoint = formatUnicorn(getters.endpoints.templates, type) + '/' + id
       console.log('getTemplate endpoint =', endpoint)
-      const response = await load(getters.instance, getters.jwt, endpoint)
+      const response = await load(getters.instanceName, getters.jwt, endpoint)
       console.log('load', type, 'template', id, ':', response)
       commit(types.SET_TEMPLATE, response.data)
       if (showNotification) {

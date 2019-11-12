@@ -8,7 +8,15 @@ const state = {
 
 const getters = {
   provisionStatus: state => state.status,
-  isProvisioned: state => state.status !== null && Object.keys(state.status).length > 0
+  isProvisioned: state => state.status !== null && Object.keys(state.status).length > 0,
+  provisioningDisabled: (state, getters) => {
+    if (getters.instance) {
+      return getters.instance.locked
+    } else {
+      // disable provisioning if instance is not found
+      return true
+    }
+  }
 }
 
 const mutations = {
@@ -24,7 +32,7 @@ const actions = {
     try {
       const endpoint = getters.endpoints.provision
       console.log('loading provision status from endpoint', endpoint, '...')
-      const response = await load(getters.instance, getters.jwt, endpoint)
+      const response = await load(getters.instanceName, getters.jwt, endpoint)
       console.log('load provision status - response:', response)
       commit(types.SET_PROVISION_STATUS, response.data)
       if (showNotification) {
@@ -44,7 +52,7 @@ const actions = {
       const endpoint = getters.endpoints.provision
       try {
         // send provision request to API
-        await post(getters.instance, getters.jwt, endpoint)
+        await post(getters.instanceName, getters.jwt, endpoint)
         if (showNotification) {
           dispatch('successNotification', 'Successfully provisioning your account.')
           // Dialog.alert({

@@ -30,7 +30,7 @@ export const loadToState = async function ({getters, commit, dispatch}, options)
     // throw Error(message)
   }
   try {
-    const response = await load(getters.instance, getters.jwt, options.endpoint, options.query)
+    const response = await load(getters.instanceName, getters.jwt, options.endpoint, options.query)
     console.log(`GET ${options.name}`, response)
     let data
     if (typeof options.transform === 'function') {
@@ -71,7 +71,7 @@ export const setLoading = function ({getters, commit, dispatch}, {group, type, v
 export const putData = async function ({getters, commit, dispatch}, options) {
   try {
     console.log(`putData ${options.endpoint}`, options.data)
-    const response = await put(getters.instance, getters.jwt, options.endpoint, options.query, options.data)
+    const response = await put(getters.instanceName, getters.jwt, options.endpoint, options.query, options.data)
     console.log(`put ${options.name}`, response)
     if (options.showNotification) {
       dispatch('successNotification', `Successfully set ${options.name}`)
@@ -86,7 +86,7 @@ export const putData = async function ({getters, commit, dispatch}, options) {
 export const postData = async function ({getters, commit, dispatch}, options) {
   try {
     console.log(`postData ${options.endpoint}`, options.data)
-    const response = await post(getters.instance, getters.jwt, options.endpoint, options.query, options.data)
+    const response = await post(getters.instanceName, getters.jwt, options.endpoint, options.query, options.data)
     console.log(`post ${options.name}`, response)
     if (options.showNotification) {
       dispatch('successNotification', `Successfully updated ${options.name}`)
@@ -112,7 +112,7 @@ export const postData = async function ({getters, commit, dispatch}, options) {
 export const deleteData = async function ({getters, commit, dispatch}, options) {
   try {
     console.log(`deleteData ${options.endpoint}`, options.data)
-    const response = await httpDelete(getters.instance, getters.jwt, options.endpoint, options.query)
+    const response = await httpDelete(getters.instanceName, getters.jwt, options.endpoint, options.query)
     console.log(`delete ${options.name}`, response)
     if (options.showNotification) {
       dispatch('successNotification', `Successfully deleted ${options.name}`)

@@ -10,6 +10,7 @@ import usage from './usage'
 import admin from './admin'
 import webex from './webex'
 import dcloud from './dcloud'
+import endpoints from './endpoints'
 
 export default {
   app,
@@ -23,5 +24,6 @@ export default {
   usage,
   admin,
   webex,
-  dcloud
+  dcloud,
+  endpoints
 }

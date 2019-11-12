@@ -73,7 +73,7 @@ const actions = {
     console.log('logging out user')
     try {
       // tell server we're logging out
-      const response = await post(getters.instance, getters.jwt, getters.endpoints.logout)
+      const response = await post(getters.instanceName, getters.jwt, getters.endpoints.logout)
       // did they successfully log out of superuser mode?
       if (response.status >= 200 && response.status < 300) {
         if (response.data.jwt) {
@@ -106,7 +106,7 @@ const actions = {
       console.log('JWT login token found in localStorage. checking it...')
       // load user. this should validate JWT on server.
       try {
-        const response = await load(getters.instance, jwt, getters.endpoints.user)
+        const response = await load(getters.instanceName, jwt, getters.endpoints.user)
         //
         console.log('checkLogin get user response =', response)
         dispatch('setJwt', jwt)

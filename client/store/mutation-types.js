@@ -144,3 +144,6 @@ export const SET_USER_PROVISION_MAP = 'SET_USER_PROVISION_MAP'
 export const SET_DUO_ENROLL_STATUS = 'SET_DUO_ENROLL_STATUS'
 // duo security enrollment data
 export const SET_DUO_ENROLLMENT_DATA = 'SET_DUO_ENROLLMENT_DATA'
+
+// PCCE 12 instances
+export const SET_INSTANCES = 'SET_INSTANCES'
