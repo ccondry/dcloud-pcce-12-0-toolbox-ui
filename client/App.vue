@@ -58,14 +58,7 @@ export default {
   },
 
   mounted () {
-    this.authCheck().then(r => {
-      // auth check done
-      // are they logged in?
-      if (this.authenticated === true) {
-        // get their provision status
-        this.getProvisionStatus(false)
-      }
-    })
+    this.authCheck()
   },
 
   computed: {
