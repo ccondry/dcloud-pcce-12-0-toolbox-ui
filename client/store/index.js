@@ -17,7 +17,12 @@ const store = new Vuex.Store({
   getters,
   modules,
   state: {
+    ldapDomain: 'dcloud.cisco.com',
     demoConfigId: 'pcce-12-0',
+    caName: 'DCLOUDROOT-CA',
+    subCaName: 'DCLOUDSUB-CA',
+    caCertUrl: 'https://mm-static.cxdemo.net/dcloud-root-ca.crt',
+    subCaCertUrl: 'https://mm-static.cxdemo.net/dcloud-sub-ca.crt',
     isProduction,
     pkg,
     working: {

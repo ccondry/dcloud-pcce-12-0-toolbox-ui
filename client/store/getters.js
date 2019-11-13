@@ -9,3 +9,4 @@ export const authEnabled = state => true
 export const loading = state => state.loading
 export const working = state => state.working
 export const demoConfigId = state => state.demoConfigId
+export const ldapDomain = state => state.ldapDomain

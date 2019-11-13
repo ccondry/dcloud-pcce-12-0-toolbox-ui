@@ -10,24 +10,27 @@
             <p class="subtitle">{{ agent.role }}</p>
             <img :src="agent.picture" width="128px">
             <p>
-              <strong>Username:</strong>
+              <strong>Username:
               <span class="grey-background">
                 {{ agent.username }}
               </span>
+              </strong>
               <a @click="clickCopy(agent.username, 'Username')"><b-icon icon="layers"></b-icon></a>
             </p>
             <p>
-              <strong>Password:</strong>
+              <strong>Password:
               <span class="grey-background">
                 {{ agent.password }}
               </span>
+              </strong>
               <a @click="clickCopy(agent.password, 'Password')"><b-icon icon="layers"></b-icon></a>
             </p>
             <p>
-              <strong>Extension:</strong>
-              <span class="grey-background">
-                {{ agent.extension }}
-              </span>
+              <strong>Extension:
+                <span class="grey-background">
+                  {{ agent.extension }}
+                </span>
+              </strong>
               <a @click="clickCopy(agent.extension, 'Extension')"><b-icon icon="layers"></b-icon></a>
             </p>
           </article>

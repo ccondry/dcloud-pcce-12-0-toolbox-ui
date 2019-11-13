@@ -70,6 +70,80 @@
 
       <!-- user is provisioned - show agent info -->
       <div class="tile is-ancestor" v-if="isProvisioned">
+        <div class="tile is-parent is-12 is-vertical">
+          <article class="tile is-child box">
+            <h1 class="title">VPN</h1>
+            <div class="content">
+              <p>
+                You can connect your laptop to the demo session using AnyConnect:
+              </p>
+              <ul>
+                <li>
+                  Address:
+                  <span class="grey-background">
+                    <strong>{{ vpnAddress }}</strong>
+                    <a @click="clickCopy(vpnAddress, 'VPN Address')">
+                      <b-icon icon="layers"></b-icon>
+                    </a>
+                  </span>
+                </li>
+                <li>
+                  Username:
+                  <span class="grey-background">
+                    <strong>{{ user.username }}</strong>
+                    <a @click="clickCopy(user.username, 'VPN Username')">
+                      <b-icon icon="layers"></b-icon>
+                    </a>
+                  </span>
+                </li>
+                <li>
+                  Password: <strong>Your dCloud Toolbox password</strong>
+                </li>
+              </ul>
+              <p>
+                Note: If you have any issues resolving DNS in the demo while using
+                Windows, try rebooting Windows to resolve this issue.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Workstation -->
+      <div class="tile is-ancestor" v-if="isProvisioned">
+        <div class="tile is-parent is-12 is-vertical">
+          <article class="tile is-child box">
+            <h1 class="title">Workstation</h1>
+            <div class="content">
+              <p>
+                After you have connected to the demo session VPN,
+                you can connect to the Workstation using Microsoft Remote Desktop
+                Client to run your demos.
+              </p>
+              <p>
+                If you have any issues connecting to
+                the Workstation using the FQDN, then you can either try using the
+                IP address instead, or if you are on Windows try rebooting Windows
+                to resolve this AnyConnect-related DNS issue.
+              </p>
+              <p>
+                Remote Desktop Workstation Address:
+                <span class="grey-background">
+                  <strong>{{ rdpAddress }}</strong>
+                </span>
+                <a @click="clickCopy(rdpAddress, 'Workstation RDP Address')"><b-icon icon="layers"></b-icon></a>
+              </p>
+              <p>
+                <!-- Remote Desktop Workstation Credentials: -->
+                Connect to the Workstation using your agents' credentials below.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- user is provisioned - show agent info -->
+      <div class="tile is-ancestor" v-if="isProvisioned">
         <div class="tile is-parent">
           <article class="tile is-child box is-horizontal">
             <h1 class="title">Agents</h1>
@@ -197,6 +271,31 @@ export default {
       'provisionUser',
       'saveDemoConfig'
     ]),
+    clickCopy (s, type) {
+      // copy text to clipboard
+      const input = document.createElement('input')
+      document.body.appendChild(input)
+      input.value = s
+      input.focus()
+      input.select()
+      const result = document.execCommand('copy')
+      if (result === 'unsuccessful') {
+        // failed
+        console.error('Failed to copy text.')
+      } else {
+        // success
+        // this.$snackbar.open({
+        //   message: 'Text Copied',
+        //   type: 'is-success',
+        //   position: 'is-top'
+        // })
+        this.$buefy.toast.open({
+          message: type + ' Copied to Your Clipboard',
+          queue: false
+        })
+      }
+      input.remove()
+    },
     verticalChanged (e) {
       console.log('vertical changed', e.target.value)
       // construct data body to send to API
@@ -289,7 +388,9 @@ export default {
       'brandDemoLink',
       'dcloudSession',
       'demoConfig',
-      'provisioningDisabled'
+      'provisioningDisabled',
+      'rdpAddress',
+      'vpnAddress'
     ]),
     demoNumber () {
       switch (this.vertical) {
@@ -371,3 +472,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.grey-background {
+  background-color: rgb(240, 240, 240);
+}
+</style>

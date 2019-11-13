@@ -53,6 +53,17 @@ const getters = {
     } catch (e) {
       return null
     }
+  },
+  vpnAddress: (state, getters) => {
+    try {
+      return 'vpn-pcce-12-0-' + getters.datacenter.toLowerCase() + '.cxdemo.net'
+    } catch (e) {
+      // maybe getters.datacenter is not ready yet
+      return 'Loading...'
+    }
+  },
+  rdpAddress: (state, getters) => {
+    return 'rdp.dcloud.cisco.com (198.18.134.210)'
   }
 }
 
