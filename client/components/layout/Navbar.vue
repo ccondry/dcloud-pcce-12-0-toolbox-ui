@@ -9,7 +9,7 @@
             <div class="level-item">
               <p>
                 <a href="/">dCloud Toolbox</a>
-                - Packaged Contact Center Enterprise 12.0 v1
+                - Packaged Contact Center Enterprise 12.0 v2
                 - Instant Demo
               </p>
             </div>
