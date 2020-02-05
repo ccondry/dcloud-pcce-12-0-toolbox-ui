@@ -93,7 +93,7 @@ const actions = {
         endpoint: getters.endpoints.instances,
         query: {
           demo: 'pcce',
-          version: '12.0v1'
+          version: '12.0v2'
         },
         mutation: types.SET_INSTANCES,
         showNotification
