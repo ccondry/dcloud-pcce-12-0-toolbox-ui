@@ -136,6 +136,10 @@
               <p>
                 <!-- Remote Desktop Workstation Credentials: -->
                 Connect to the Workstation using your agents' credentials below.
+                <!-- you can have more than 1 -->
+                Create a separate connection profile in Microsoft Remote Desktop
+                application to have multiple simultaneous agent desktops open
+                (i.e. agent, supervisor).
               </p>
             </div>
           </article>
