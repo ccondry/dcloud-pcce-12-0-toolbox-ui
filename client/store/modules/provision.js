@@ -111,7 +111,7 @@ const actions = {
         // reload precision queues
         // dispatch('searchCceObjects', {type: 'precisionQueue', showNotification: false})
         if (showNotification) {
-          dispatch('successNotification', 'Successfully started PCCE provisioning process.')
+          dispatch('successNotification', 'Provisioning successful.')
         }
       } catch (e) {
         console.log('error during PCCE provision script', e)
