@@ -11,6 +11,7 @@ import admin from './admin'
 import webex from './webex'
 import dcloud from './dcloud'
 import endpoints from './endpoints'
+import finesse from './finesse'
 
 export default {
   app,
@@ -25,5 +26,6 @@ export default {
   admin,
   webex,
   dcloud,
-  endpoints
+  endpoints,
+  finesse
 }

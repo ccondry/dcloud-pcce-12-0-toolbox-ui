@@ -28,7 +28,12 @@ const endpoints = {
   instances: urlBase + '/instances',
   session: urlBase + '/session',
   vertical: urlBase + '/vertical',
-  cumulus: urlBase + '/cumulus'
+  cumulus: urlBase + '/cumulus',
+  finesse: {
+    team: {
+      layout: urlBase + '/finesse/team/layout'
+    }
+  }
 }
 
 const state = {

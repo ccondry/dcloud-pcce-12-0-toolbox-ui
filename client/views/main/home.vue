@@ -169,6 +169,10 @@
               Loading...
             </div>
             <div class="content" v-if="verticals.length">
+              <p>
+                Choose the vertical you want to use, then click Go to Demo Website
+                to show the customer side of the demo.
+              </p>
               <div class="select">
                 <select class="input" v-model="vertical" @change="verticalChanged" :disabled="working.app.user">
                   <option value="" disabled selected>Choose Your Demo Vertical</option>
@@ -220,6 +224,92 @@
           </article>
         </div>
       </div>
+
+      <div class="tile is-ancestor" v-if="isProvisioned">
+        <div class="tile is-parent is-12">
+          <article class="tile is-child box">
+            <h1 class="title">CCE Web Administration (SPOG)</h1>
+            <div class="content">
+              <p>
+                You can view and manage your PCCE department in
+                <a href="https://ccedata.dcloud.cisco.com/cceadmin/" target="cceadmin">
+                  CCE Web Administration (SPOG)
+                </a>.
+                You must be on the Workstation and/or the VPN to access the CUIC
+                server.
+              </p>
+              <p>
+                Your department administrator credentials for SPOG are:
+                <ul>
+                  <li>
+                    URL:
+                    <strong>
+                      <a href="https://ccedata.dcloud.cisco.com/cceadmin/" target="cceadmin">
+                        https://ccedata.dcloud.cisco.com/cceadmin/
+                      </a>
+                    </strong>
+                  </li>
+                  <li>
+                    Username:
+                    <strong>
+                      <span class="grey-background">
+                        {{ user.username }}@{{ ldapDomain }}
+                      </span>
+                      <a @click="clickCopy(`${user.username}@${ldapDomain}`, 'SPOG Username')">
+                        <b-icon icon="layers"></b-icon>
+                      </a>
+                    </strong>
+                  </li>
+                  <li>
+                    Password:
+                    <strong>Your dCloud Toolbox password</strong>
+                  </li>
+                </ul>
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="tile is-ancestor">
+        <div class="tile is-parent is-12 is-vertical">
+          <article class="tile is-child box">
+            <h1 class="title">CUIC Reporting</h1>
+            <div class="content">
+              <p>
+                Log in to
+                <a href="https://cuic1.dcloud.cisco.com" target="cuic">
+                  CUIC
+                </a>
+                using any of your supervisor agents, listed below. You must be
+                on the Workstation and/or the VPN to access the CUIC server.
+              </p>
+              <ul>
+                <li>URL: <strong><a href="https://cuic1.dcloud.cisco.com" target="cuic">https://cuic1.dcloud.cisco.com</a></strong></li>
+                <li>Username:
+                  <strong>
+                    <span class="grey-background">
+                      rbarrows{{ user.id }}
+                    </span>
+                    <a @click="clickCopy(`rbarrows${user.id}`, 'CUIC Username')">
+                      <b-icon icon="layers"></b-icon>
+                    </a>
+                  </strong>
+                </li>
+                <li>Password: <strong>
+                  <span class="grey-background">
+                    C1sco12345
+                  </span>
+                  <a @click="clickCopy(`C1sco12345`, 'CUIC Password')">
+                    <b-icon icon="layers"></b-icon>
+                  </a>
+                  </strong></li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+
 
       <div class="tile is-ancestor" v-if="isProvisioned">
         <!-- user not provisioned - show provision button -->
@@ -394,7 +484,8 @@ export default {
       'demoConfig',
       'provisioningDisabled',
       'rdpAddress',
-      'vpnAddress'
+      'vpnAddress',
+      'ldapDomain'
     ]),
     demoNumber () {
       switch (this.vertical) {
