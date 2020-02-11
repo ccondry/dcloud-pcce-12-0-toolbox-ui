@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="tile is-ancestor">
-      <div class="tile">
+    <div class="tile is-ancestor" style="flex-wrap: wrap;">
+      <!-- <div class="tile"> -->
         <!-- repeat this tile for each agent -->
         <div class="tile is-parent" v-for="agent of agents">
-          <article class="tile is-child box">
+          <article class="tile is-child box" style="min-width: 16em;">
 
             <p class="title">{{ agent.name }}</p>
-            <p class="subtitle">{{ agent.role }}</p>
+            <p class="subtitle">{{ agent.description }}</p>
             <img :src="agent.picture" width="128px">
             <p>
               <strong>Username:
@@ -34,7 +34,7 @@
               <a @click="clickCopy(agent.extension, 'Extension')"><b-icon icon="layers"></b-icon></a>
             </p>
           </article>
-        </div>
+        <!-- </div> -->
 
       </div>
     </div>
@@ -65,28 +65,78 @@ export default {
     agents () {
       return [
         {
-          picture: 'https://mm.cxdemo.net/static/images/cumulus/common/author1.png',
-          username: 'sjeffers' + this.user.id + '@dcloud.cisco.com',
+          picture: 'https://mm.cxdemo.net/static/images/cumulus/common/sandra.png',
+          username: 'sjeffers',
           password: 'C1sco12345',
           extension: '1080' + this.user.id,
           name: 'Sandra Jefferson',
-          role: 'Agent'
+          role: 'Agent',
+          description: 'Main Agent'
         },
         {
-          picture: 'https://mm.cxdemo.net/static/images/cumulus/common/author2.png',
-          username: 'jopeters' + this.user.id + '@dcloud.cisco.com',
+          picture: 'https://mm.cxdemo.net/static/images/cumulus/common/josh.png',
+          // username: 'jopeters' + this.user.id + '@dcloud.cisco.com',
+          username: '1081' + this.user.id,
           password: 'C1sco12345',
           extension: '1081' + this.user.id,
           name: 'Josh Peterson',
-          role: 'Agent'
+          role: 'Agent',
+          description: 'CRM Agent'
         },
         {
-          picture: 'https://mm.cxdemo.net/static/images/cumulus/common/author3.png',
+          picture: 'https://mm.cxdemo.net/static/images/cumulus/common/trudy.png',
+          // username: 'trujones' + this.user.id + '@dcloud.cisco.com',
+          username: '1087' + this.user.id,
+          password: 'C1sco12345',
+          extension: '1087' + this.user.id,
+          name: 'Trudy Vere-Jones',
+          role: 'Agent',
+          description: 'CRM Agent'
+        },
+        {
+          picture: 'https://mm.cxdemo.net/static/images/cumulus/common/owen.png',
+          username: 'oharvey',
+          password: 'C1sco12345',
+          extension: '1085' + this.user.id,
+          name: 'Owen Harvey',
+          role: 'Agent',
+          description: 'Outbound Agent'
+        },
+        {
+          picture: 'https://mm.cxdemo.net/static/images/cumulus/common/annika.png',
+          username: 'annika',
+          password: 'C1sco12345',
+          extension: '1086' + this.user.id,
+          name: 'Annika Hamilton',
+          role: 'Agent',
+          description: 'Outbound Agent'
+        },
+        {
+          picture: 'https://mm.cxdemo.net/static/images/cumulus/common/helen.png',
+          username: 'hliang',
+          password: 'C1sco12345',
+          extension: '1083' + this.user.id,
+          name: 'Helen Liang',
+          role: 'Agent',
+          description: 'Outbound Agent'
+        },
+        {
+          picture: 'https://mm.cxdemo.net/static/images/cumulus/common/rick.png',
           username: 'rbarrows' + this.user.id + '@dcloud.cisco.com',
           password: 'C1sco12345',
           extension: '1082' + this.user.id,
           name: 'Rick Barrows',
-          role: 'Supervisor'
+          role: 'Supervisor',
+          description: 'Main Supervisor'
+        },
+        {
+          picture: 'https://mm.cxdemo.net/static/images/cumulus/common/james.png',
+          username: 'jabracks' + this.user.id + '@dcloud.cisco.com',
+          password: 'C1sco12345',
+          extension: '1084' + this.user.id,
+          name: 'James Bracksted',
+          role: 'Supervisor',
+          description: 'UWF Supervisor'
         }
       ]
     }
