@@ -271,7 +271,7 @@
         </div>
       </div>
 
-      <div class="tile is-ancestor">
+      <div class="tile is-ancestor" v-if="isProvisioned">
         <div class="tile is-parent is-12 is-vertical">
           <article class="tile is-child box">
             <h1 class="title">CUIC Reporting</h1>
