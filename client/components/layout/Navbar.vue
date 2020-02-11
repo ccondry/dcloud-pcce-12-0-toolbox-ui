@@ -9,8 +9,8 @@
             <div class="level-item">
               <p>
                 <a href="/">dCloud Toolbox</a>
-                - Packaged Contact Center Enterprise 12.0 v2
-                - Instant Demo
+                - PCCE 12.0v2 Instant
+                - {{ currentDatacenter }} {{ currentSession }}
               </p>
             </div>
           </nav>
