@@ -10,7 +10,7 @@
               <p>
                 <a href="/">dCloud Toolbox</a>
                 - PCCE 12.0v2 Instant
-                - {{ currentDatacenter }} {{ currentSession }}
+                - {{ datacenter }} {{ sessionId }}
               </p>
             </div>
           </nav>
@@ -48,34 +48,20 @@ export default {
   },
 
   computed: {
-    ...mapGetters({
-      pkginfo: 'pkg',
-      sidebar: 'sidebar',
-      authenticated: 'authenticated',
-      user: 'user',
-      instance: 'instance',
-      'currentInstance': 'currentInstance',
-      'isProduction': 'isProduction'
-    }),
+    ...mapGetters([
+      'sidebar',
+      'authenticated',
+      'user',
+      'instance',
+      'isProduction',
+      'sessionId',
+      'datacenter'
+    ]),
     userPage () {
       if (this.isProduction) {
         return '/auth/user'
       } else {
         return 'http://localhost:8085/auth/user/right'
-      }
-    },
-    currentDatacenter () {
-      try {
-        return this.currentInstance.datacenter
-      } catch (e) {
-        return ''
-      }
-    },
-    currentSession () {
-      try {
-        return this.currentInstance.session
-      } catch (e) {
-        return ''
       }
     }
   },
