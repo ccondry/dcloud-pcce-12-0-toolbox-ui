@@ -118,7 +118,7 @@ export default {
           extension: '1083' + this.user.id,
           name: 'Helen Liang',
           role: 'Agent',
-          description: 'Outbound Agent'
+          description: 'UWF Agent'
         },
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/rick.png',
