@@ -29,10 +29,10 @@ const getters = {
   sessionId: (state, getters) => getters.dcloudSession.sessionId,
   datacenter: (state, getters) => getters.dcloudSession.datacenter,
   brandDemoLink (state, getters) {
-    return `https://mm-brand.cxdemo.net?session=${getters.sessionId}&datacenter=${getters.datacenter}&userId=${getters.user.id}`
+    return `https://mm-brand.cxdemo.net?session=${getters.instance.session}&datacenter=${getters.instance.datacenter}&userId=${getters.user.id}`
   },
   cumulusDemoLink (state, getters) {
-    return `https://mm.cxdemo.net?session=${getters.sessionId}&datacenter=${getters.datacenter}&userId=${getters.user.id}`
+    return `https://mm.cxdemo.net?session=${getters.instance.session}&datacenter=${getters.instance.datacenter}&userId=${getters.user.id}`
   },
   // all available instances
   instances: state => state.instances,
@@ -49,9 +49,9 @@ const getters = {
         return v.datacenter === parts[0] && String(v.id) === parts[1]
       })
       console.log('instance is', obj)
-      return obj || null
+      return obj || {}
     } catch (e) {
-      return null
+      return {}
     }
   },
   vpnAddress: (state, getters) => {

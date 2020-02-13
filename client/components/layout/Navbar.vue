@@ -53,10 +53,16 @@ export default {
       'authenticated',
       'user',
       'instance',
-      'isProduction',
-      'sessionId',
-      'datacenter'
+      'isProduction'
+      // 'sessionId',
+      // 'datacenter'
     ]),
+    sessionId () {
+      return this.instance.session
+    },
+    datacenter () {
+      return this.instance.datacenter
+    },
     userPage () {
       if (this.isProduction) {
         return '/auth/user'
