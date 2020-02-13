@@ -281,7 +281,7 @@
                 <a href="https://cuic1.dcloud.cisco.com" target="cuic">
                   CUIC
                 </a>
-                using any of your supervisor agents, listed below. You must be
+                using your main supervisor agent credentials, listed below. You must be
                 on the Workstation and/or the VPN to access the CUIC server.
               </p>
               <ul>
