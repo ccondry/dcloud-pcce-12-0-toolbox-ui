@@ -436,14 +436,14 @@ export default {
       if (this.isProvisioned) {
         // reprovision
         // set timer for working estimate
-        // 30 seconds in milliseconds
+        // 45 seconds in milliseconds
         this.timerEnd = new Date().getTime() + 45 * 1000
         this.startTimer()
       } else {
         // first provision
         // set timer for working estimate
-        // 100 seconds in milliseconds
-        this.timerEnd = new Date().getTime() + 100 * 1000
+        // 60 seconds in milliseconds
+        this.timerEnd = new Date().getTime() + 60 * 1000
         this.startTimer()
       }
       console.log('user clicked Provision Me button')
