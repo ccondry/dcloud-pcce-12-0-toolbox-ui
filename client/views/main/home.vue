@@ -60,7 +60,7 @@
               </b-field>
               <b-field>
                 <button class="button is-success" @click.prevent="clickProvision" :disabled="working.user.provision">
-                  {{ working.user.provision ? 'Working...' : 'Yes, Provision Me' }}
+                  {{ working.user.provision ? `Working - ${provisionTime}` : 'Yes, Provision Me' }}
                 </button>
               </b-field>
             </div>
@@ -325,7 +325,7 @@
             </b-field>
             <b-field>
               <button class="button is-success" @click.prevent="clickProvision" :disabled="working.user.provision">
-                {{ working.user.provision ? 'Working...' : 'Yes, Provision Me Anyway' }}
+                {{ working.user.provision ? `Working - ${provisionTime}` : 'Yes, Provision Me Anyway' }}
               </button>
             </b-field>
           </article>
@@ -351,7 +351,9 @@ export default {
       ownerFilter: '',
       brandFilter: 'mine',
       vertical: 'finance',
-      showMore: false
+      showMore: false,
+      timerStart: 0,
+      timerEnd: 0
     }
   },
 
@@ -424,6 +426,20 @@ export default {
       })
     },
     clickProvision () {
+      // reprovision or first time?
+      if (this.isProvisioned) {
+        // reprovision
+        // set timer for working estimate
+        this.timerStart = Date.getTime()
+        // 30 seconds in milliseconds
+        this.timerEnd = this.timerStart + 30 * 1000
+      } else {
+        // first provision
+        // set timer for working estimate
+        this.timerStart = Date.getTime()
+        // 100 seconds in milliseconds
+        this.timerEnd = this.timerStart + 100 * 1000
+      }
       console.log('user clicked Provision Me button')
       // TODO prompt user if they are already provisioned in another active
       // datacenter
@@ -487,6 +503,14 @@ export default {
       'vpnAddress',
       'ldapDomain'
     ]),
+    provisionTime () {
+      // returns the estimated time remaining to complete provisioning
+      const timeLeft = this.timerEnd - Date.getTime()
+      if (timeLeft < 0) {
+        return 'Almost done...'
+      }
+      return `About ${Math.ceil(timeLeft / 1000)} seconds remaining...`
+    },
     demoNumber () {
       switch (this.vertical) {
         case 'city': return this.getDid('DID5')
