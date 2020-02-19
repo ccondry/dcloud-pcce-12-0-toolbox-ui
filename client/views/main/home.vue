@@ -518,6 +518,10 @@ export default {
     provisionTime () {
       if (this.timeLeft < 0) {
         return 'Almost done...'
+      } else if (this.timeLeft > 500) {
+        // validate sane output
+        // over 500 is probably wrong... so say something else
+        return `Estimating time remaining...`
       } else {
         return `About ${this.timeLeft} seconds remaining...`
       }
