@@ -352,8 +352,8 @@ export default {
       brandFilter: 'mine',
       vertical: 'finance',
       showMore: false,
-      timerStart: 0,
-      timerEnd: 0
+      timerEnd: 0,
+      timerNow: 0
     }
   },
 
@@ -367,6 +367,12 @@ export default {
       'provisionUser',
       'saveDemoConfig'
     ]),
+    startTimer () {
+      // advance the timer every 1 second
+      setInterval(() => {
+        this.timerNow = new Date().getTime()
+      }, 1000)
+    },
     clickCopy (s, type) {
       // copy text to clipboard
       const input = document.createElement('input')
@@ -430,15 +436,15 @@ export default {
       if (this.isProvisioned) {
         // reprovision
         // set timer for working estimate
-        this.timerStart = Date.getTime()
         // 30 seconds in milliseconds
-        this.timerEnd = this.timerStart + 30 * 1000
+        this.timerEnd = new Date().getTime() + 45 * 1000
+        this.startTimer()
       } else {
         // first provision
         // set timer for working estimate
-        this.timerStart = Date.getTime()
         // 100 seconds in milliseconds
-        this.timerEnd = this.timerStart + 100 * 1000
+        this.timerEnd = new Date().getTime() + 100 * 1000
+        this.startTimer()
       }
       console.log('user clicked Provision Me button')
       // TODO prompt user if they are already provisioned in another active
@@ -503,13 +509,18 @@ export default {
       'vpnAddress',
       'ldapDomain'
     ]),
-    provisionTime () {
+    timeLeft () {
       // returns the estimated time remaining to complete provisioning
-      const timeLeft = this.timerEnd - Date.getTime()
-      if (timeLeft < 0) {
+      // const now = new Date().getTime()
+      const timeLeft = this.timerEnd - this.timerNow
+      return Math.ceil(timeLeft / 1000)
+    },
+    provisionTime () {
+      if (this.timeLeft < 0) {
         return 'Almost done...'
+      } else {
+        return `About ${this.timeLeft} seconds remaining...`
       }
-      return `About ${Math.ceil(timeLeft / 1000)} seconds remaining...`
     },
     demoNumber () {
       switch (this.vertical) {
