@@ -82,7 +82,6 @@ const actions = {
     dispatch('setWorking', {group: 'user', type: 'provision', value: true})
     console.log('starting PCCE provision...')
     try {
-      const endpoint = getters.endpoints.provision
       const username = getters.user.username
       // console.log('endpoint =', endpoint)
       // make sure their password is right
@@ -93,12 +92,11 @@ const actions = {
           console.log('PCCE provision - auth - response:', auth)
         }
         // now provision using their toolbox password
-        await post(getters.instanceName, getters.jwt, endpoint, null, {password})
+        await post(getters.instanceName, getters.jwt, getters.endpoints.provision, null, {password})
         // register provision status with pcce-toolbox-proxy
         // TODO get that static string out of there!
         const query = {demo: 'pcce', version: '12.0v2'}
-        const endpoint = getters.endpoints.instanceRegister
-        // post(getters.instanceName, getters.jwt, endpoint, null, query)
+        post(getters.instanceName, getters.jwt, getters.endpoints.instanceRegister, null, query)
         // .then(r => console.log('successfully registered provision status'))
         // .catch(e => console.error('provision succeeded, but registering provision status failed:', e))
         // console.log('PCCE provision status - response:', response)
