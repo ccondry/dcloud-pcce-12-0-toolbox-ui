@@ -96,8 +96,8 @@ const actions = {
         await post(getters.instanceName, getters.jwt, endpoint, null, {password})
         // register provision status with pcce-toolbox-proxy
         // TODO get that static string out of there!
-        // const query = {demo: 'pcce', version: '12.0v1'}
-        // const endpoint = getters.endpoints.instanceRegister
+        const query = {demo: 'pcce', version: '12.0v2'}
+        const endpoint = getters.endpoints.instanceRegister
         // post(getters.instanceName, getters.jwt, endpoint, null, query)
         // .then(r => console.log('successfully registered provision status'))
         // .catch(e => console.error('provision succeeded, but registering provision status failed:', e))
