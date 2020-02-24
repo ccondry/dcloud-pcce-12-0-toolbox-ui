@@ -66,7 +66,7 @@ export default {
       return [
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/sandra.png',
-          username: 'sjeffers',
+          username: 'sjeffers' + this.user.id,
           password: 'C1sco12345',
           extension: '1080' + this.user.id,
           name: 'Sandra Jefferson',
@@ -95,7 +95,7 @@ export default {
         },
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/owen.png',
-          username: 'oharvey',
+          username: 'oharvey' + this.user.id,
           password: 'C1sco12345',
           extension: '1085' + this.user.id,
           name: 'Owen Harvey',
@@ -104,7 +104,7 @@ export default {
         },
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/annika.png',
-          username: 'annika',
+          username: 'annika' + this.user.id,
           password: 'C1sco12345',
           extension: '1086' + this.user.id,
           name: 'Annika Hamilton',
@@ -113,7 +113,7 @@ export default {
         },
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/helen.png',
-          username: 'hliang',
+          username: 'hliang' + this.user.id,
           password: 'C1sco12345',
           extension: '1083' + this.user.id,
           name: 'Helen Liang',
