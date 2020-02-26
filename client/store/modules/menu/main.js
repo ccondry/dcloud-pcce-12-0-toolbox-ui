@@ -18,16 +18,16 @@ export default {
         description: 'home'
       },
       component: lazyLoading('main/home')
-    },
-    {
-      name: 'Finesse',
-      path: path + '/finesse',
-      meta: {
-        icon: 'view-quilt',
-        label: 'Finesse',
-        description: 'Edit Finesse gadget layout'
-      },
-      component: lazyLoading('main/finesse')
     }
+    // {
+    //   name: 'Finesse',
+    //   path: path + '/finesse',
+    //   meta: {
+    //     icon: 'view-quilt',
+    //     label: 'Finesse',
+    //     description: 'Edit Finesse gadget layout'
+    //   },
+    //   component: lazyLoading('main/finesse')
+    // }
   ]
 }
