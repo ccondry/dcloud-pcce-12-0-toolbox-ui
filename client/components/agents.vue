@@ -10,12 +10,20 @@
             <p class="subtitle">{{ agent.description }}</p>
             <img :src="agent.picture" width="128px">
             <p>
-              <strong>Username:
+              <strong>RDP Username:
               <span class="grey-background">
-                {{ agent.username }}
+                {{ agent.rdpUsername }}
               </span>
               </strong>
-              <a @click="clickCopy(agent.username, 'Username')"><b-icon icon="layers"></b-icon></a>
+              <a @click="clickCopy(agent.rdpUsername, 'RDP Username')"><b-icon icon="layers"></b-icon></a>
+            </p>
+            <p>
+              <strong>Finesse Username:
+              <span class="grey-background">
+                {{ agent.finesseUsername }}
+              </span>
+              </strong>
+              <a @click="clickCopy(agent.finesseUsername, 'Finesse Username')"><b-icon icon="layers"></b-icon></a>
             </p>
             <p>
               <strong>Password:
@@ -66,7 +74,8 @@ export default {
       return [
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/sandra.png',
-          username: 'sjeffers' + this.user.id,
+          finesseUsername: 'sjeffers' + this.user.id,
+          rdpUsername: 'sjeffers' + this.user.id,
           password: 'C1sco12345',
           extension: '1080' + this.user.id,
           name: 'Sandra Jefferson',
@@ -75,8 +84,8 @@ export default {
         },
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/josh.png',
-          // username: 'jopeters' + this.user.id + '@dcloud.cisco.com',
-          username: '1081' + this.user.id,
+          finesseUsername: 'jopeters' + this.user.id,
+          rdpUsername: 'jopeters' + this.user.id,
           password: 'C1sco12345',
           extension: '1081' + this.user.id,
           name: 'Josh Peterson',
@@ -85,8 +94,8 @@ export default {
         },
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/trudy.png',
-          // username: 'trujones' + this.user.id + '@dcloud.cisco.com',
-          username: '1087' + this.user.id,
+          finesseUsername: 'trujones' + this.user.id,
+          rdpUsername: 'trujones' + this.user.id,
           password: 'C1sco12345',
           extension: '1087' + this.user.id,
           name: 'Trudy Vere-Jones',
@@ -95,7 +104,8 @@ export default {
         },
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/owen.png',
-          username: 'oharvey' + this.user.id,
+          finesseUsername: 'oharvey' + this.user.id,
+          rdpUsername: 'oharvey' + this.user.id,
           password: 'C1sco12345',
           extension: '1085' + this.user.id,
           name: 'Owen Harvey',
@@ -104,7 +114,8 @@ export default {
         },
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/annika.png',
-          username: 'annika' + this.user.id,
+          finesseUsername: 'annika' + this.user.id,
+          rdpUsername: 'annika' + this.user.id,
           password: 'C1sco12345',
           extension: '1086' + this.user.id,
           name: 'Annika Hamilton',
@@ -113,7 +124,8 @@ export default {
         },
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/helen.png',
-          username: 'hliang' + this.user.id,
+          finesseUsername: 'hliang' + this.user.id,
+          rdpUsername: 'hliang' + this.user.id,
           password: 'C1sco12345',
           extension: '1083' + this.user.id,
           name: 'Helen Liang',
@@ -122,7 +134,8 @@ export default {
         },
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/rick.png',
-          username: 'rbarrows' + this.user.id + '@dcloud.cisco.com',
+          finesseUsername: 'rbarrows' + this.user.id + '@dcloud.cisco.com',
+          rdpUsername: 'rbarrows' + this.user.id,
           password: 'C1sco12345',
           extension: '1082' + this.user.id,
           name: 'Rick Barrows',
@@ -131,7 +144,8 @@ export default {
         },
         {
           picture: 'https://mm.cxdemo.net/static/images/cumulus/common/james.png',
-          username: 'jabracks' + this.user.id + '@dcloud.cisco.com',
+          finesseUsername: 'jabracks' + this.user.id + '@dcloud.cisco.com',
+          rdpUsername: 'jabracks' + this.user.id,
           password: 'C1sco12345',
           extension: '1084' + this.user.id,
           name: 'James Bracksted',
