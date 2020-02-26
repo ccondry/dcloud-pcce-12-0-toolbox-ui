@@ -225,6 +225,50 @@
         </div>
       </div>
 
+      <!-- Mobile App -->
+      <div class="tile is-ancestor">
+        <div class="tile is-parent is-12 is-vertical">
+          <article class="tile is-child box">
+            <h1 class="title">dCloud CC Mobile App Settings</h1>
+            <div class="content">
+              <p>
+                Use this information to start the dCloud CC mobile app demo. The
+                pod ID needs to be entered into the Settings screen in order for
+                any demo customization to take effect with the mobile chat bot.
+              </p>
+              <ul>
+                <li>Session: <strong>{{ sessionId }}</strong></li>
+                <li>Datacenter: <strong>{{ datacenterDisplayName }}</strong></li>
+                <li>Pod ID: <strong>{{ user.id }}</strong></li>
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Facebook -->
+      <div class="tile is-ancestor">
+        <div class="tile is-parent is-12 is-vertical">
+          <article class="tile is-child box">
+            <h1 class="title">Cumulus Facebook Page</h1>
+            <div class="content">
+              <p>
+                Use these links to access the Cumulus Facebook for the AI/Chat Bot
+                demo.
+              </p>
+              <ul>
+                <li>Facebook Page: <a :href="facebookLink" target="facebook">{{ facebookLink }}</a></li>
+                <li>Messenger Link: <a :href="messengerLink" target="messenger">{{ messengerLink }}</a></li>
+                <li>Session: <strong>{{ sessionId }}</strong></li>
+                <li>Datacenter: <strong>{{ datacenterDisplayName }}</strong></li>
+                <li>User ID: <strong>{{ user.id }}</strong></li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+
       <div class="tile is-ancestor" v-if="isProvisioned">
         <div class="tile is-parent is-12">
           <article class="tile is-child box">
@@ -507,8 +551,25 @@ export default {
       'provisioningDisabled',
       'rdpAddress',
       'vpnAddress',
-      'ldapDomain'
+      'ldapDomain',
+      'sessionId',
+      'datacenter'
     ]),
+    datacenterDisplayName () {
+      const displayNames = {
+        'RTP': 'US East',
+        'SJC': 'US West',
+        'LON': 'EMEAR',
+        'SNG': 'APJ'
+      }
+      return displayNames[this.datacenter]
+    },
+    facebookLink () {
+      return 'https://fb.com/103018720547240'
+    },
+    messengerLink () {
+      return 'https://m.me/103018720547240'
+    },
     timeLeft () {
       // returns the estimated time remaining to complete provisioning
       // const now = new Date().getTime()
