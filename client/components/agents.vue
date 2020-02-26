@@ -3,8 +3,8 @@
     <div class="tile is-ancestor" style="flex-wrap: wrap;">
       <!-- <div class="tile"> -->
         <!-- repeat this tile for each agent -->
-        <div class="tile is-parent" v-for="agent of agents">
-          <article class="tile is-child box" style="min-width: 16em;">
+        <div class="tile is-parent" v-for="(agent, i) of agents" :key="i">
+          <article class="tile is-child box" style="min-width: 24em;">
 
             <p class="title">{{ agent.name }}</p>
             <p class="subtitle">{{ agent.description }}</p>
