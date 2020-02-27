@@ -214,12 +214,18 @@
                   </div>
                 </div>
               </b-field>
-                <p>
-                  Note: You can create and configure your own vertical on the
+              <p>
+                Note: You can create and configure your own vertical on the
                 <a href="/branding" target="brand-toolbox">
                   <strong>Demo Branding Toolbox</strong>
                 </a>.
               </p>
+              <p>
+                Use
+                <a :href="cumulusDemoLink" target="cumulus">
+                  this demo website
+                </a>
+                for demonstrating cobrowse only.
             </div>
           </article>
         </div>
@@ -546,6 +552,7 @@ export default {
       'working',
       'verticals',
       'brandDemoLink',
+      'cumulusDemoLink',
       'dcloudSession',
       'demoConfig',
       'provisioningDisabled',
