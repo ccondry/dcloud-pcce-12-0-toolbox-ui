@@ -244,7 +244,7 @@
               </p>
               <ul>
                 <li>Session: <strong>{{ sessionId }}</strong></li>
-                <li>Datacenter: <strong>{{ datacenterDisplayName[datacenter] }}</strong></li>
+                <li>Datacenter: <strong>{{ datacenterDisplayName }}</strong></li>
                 <li>Pod ID: <strong>{{ user.id }}</strong></li>
                 </li>
               </ul>
