@@ -244,7 +244,7 @@
               </p>
               <ul>
                 <li>Session: <strong>{{ sessionId }}</strong></li>
-                <li>Datacenter: <strong>{{ datacenterDisplayName }}</strong></li>
+                <li>Datacenter: <strong>{{ datacenterDisplayName[datacenter] }}</strong></li>
                 <li>Pod ID: <strong>{{ user.id }}</strong></li>
                 </li>
               </ul>
@@ -267,7 +267,7 @@
                 <li>Facebook Page: <a :href="facebookLink" target="facebook">{{ facebookLink }}</a></li>
                 <li>Messenger Link: <a :href="messengerLink" target="messenger">{{ messengerLink }}</a></li>
                 <li>Session: <strong>{{ sessionId }}</strong></li>
-                <li>Datacenter: <strong>{{ datacenterDisplayName }}</strong></li>
+                <li>Datacenter: <strong>{{ datacenter }}</strong></li>
                 <li>User ID: <strong>{{ user.id }}</strong></li>
               </ul>
             </div>
