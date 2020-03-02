@@ -83,7 +83,8 @@ export default {
       'getProvisionStatus',
       'loadVerticals',
       'getInstances',
-      'loadDemoConfig'
+      'loadDemoConfig',
+      'updateInstanceName'
     ]),
     async authCheck () {
       try {
@@ -105,6 +106,8 @@ export default {
           // user is authenticated
           // get instances of PCCE 12 demo
           this.getInstances()
+          // set the instance using the current URL
+          this.updateInstanceName()
         }
       } catch (e) {
         console.log('failed to get endpoints and check login:', e.message)

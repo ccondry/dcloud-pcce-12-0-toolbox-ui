@@ -147,3 +147,5 @@ export const SET_DUO_ENROLLMENT_DATA = 'SET_DUO_ENROLLMENT_DATA'
 
 // PCCE 12 instances
 export const SET_INSTANCES = 'SET_INSTANCES'
+// the instance ID for current URL
+export const SET_INSTANCE_NAME = 'SET_INSTANCE_NAME'

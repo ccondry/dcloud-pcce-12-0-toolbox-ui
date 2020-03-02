@@ -1,14 +1,15 @@
 import * as types from '../mutation-types'
 
-const isProduction = process.env.NODE_ENV === 'production'
+// const isProduction = process.env.NODE_ENV === 'production'
 
 // pick the localhost instance if running in development mode
-const instanceName = isProduction ? 'RTP-1' : 'DEV-1'
+// const instanceName = isProduction ? 'RTP-1' : 'DEV-1'
+// const instanceName = 'RTP-1'
 
 const state = {
   session: null,
   instances: [],
-  instanceName
+  instanceName: ''
   // instance: {}
 }
 
@@ -18,6 +19,9 @@ const mutations = {
   },
   [types.SET_INSTANCES] (state, data) {
     state.instances = data
+  },
+  [types.SET_INSTANCE_NAME] (state, data) {
+    state.instanceName = data
   }
 }
 
@@ -103,6 +107,22 @@ const actions = {
       throw e
     } finally {
       dispatch('setLoading', {group: 'app', type: 'instances', value: false})
+    }
+  },
+  setInstanceName ({commit}, data) {
+    commit(types.SET_INSTANCE_NAME, data)
+  },
+  updateInstanceName ({getters, dispatch}) {
+    if (getters.isProduction) {
+      // get current hostname of the browser location
+      const hostname = window.location.hostname
+      // get the part before ".cisco.com"
+      const part1 = hostname.split('.').shift()
+      // get the datacenter part
+      const datacenter = part1.split('-').pop().toUpperCase()
+      dispatch('setInstanceName', datacenter + '-1')
+    } else {
+      dispatch('setInstanceName', 'RTP-1')
     }
   }
 }
