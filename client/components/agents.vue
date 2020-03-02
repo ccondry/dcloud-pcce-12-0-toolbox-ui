@@ -11,33 +11,25 @@
             <img :src="agent.picture" width="128px">
             <p>
               <strong>RDP Username:
-              <span class="grey-background">
-                {{ agent.rdpUsername }}
-              </span>
+              {{ agent.rdpUsername }}
               </strong>
               <a @click="clickCopy(agent.rdpUsername, 'RDP Username')"><b-icon icon="layers"></b-icon></a>
             </p>
             <p>
               <strong>Finesse Username:
-              <span class="grey-background">
-                {{ agent.finesseUsername }}
-              </span>
+              {{ agent.finesseUsername }}
               </strong>
               <a @click="clickCopy(agent.finesseUsername, 'Finesse Username')"><b-icon icon="layers"></b-icon></a>
             </p>
             <p>
               <strong>Password:
-              <span class="grey-background">
-                {{ agent.password }}
-              </span>
+              {{ agent.password }}
               </strong>
               <a @click="clickCopy(agent.password, 'Password')"><b-icon icon="layers"></b-icon></a>
             </p>
             <p>
               <strong>Extension:
-                <span class="grey-background">
-                  {{ agent.extension }}
-                </span>
+                {{ agent.extension }}
               </strong>
               <a @click="clickCopy(agent.extension, 'Extension')"><b-icon icon="layers"></b-icon></a>
             </p>
@@ -172,9 +164,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.grey-background {
-  background-color: rgb(240, 240, 240);
-}
-</style>

@@ -80,21 +80,17 @@
               <ul>
                 <li>
                   Address:
-                  <span class="grey-background">
-                    <strong>{{ vpnAddress }}</strong>
-                    <a @click="clickCopy(vpnAddress, 'VPN Address')">
-                      <b-icon icon="layers"></b-icon>
-                    </a>
-                  </span>
+                  <strong>{{ vpnAddress }}</strong>
+                  <a @click="clickCopy(vpnAddress, 'VPN Address')">
+                    <b-icon icon="layers"></b-icon>
+                  </a>
                 </li>
                 <li>
                   Username:
-                  <span class="grey-background">
-                    <strong>{{ user.username }}</strong>
-                    <a @click="clickCopy(user.username, 'VPN Username')">
-                      <b-icon icon="layers"></b-icon>
-                    </a>
-                  </span>
+                  <strong>{{ user.username }}</strong>
+                  <a @click="clickCopy(user.username, 'VPN Username')">
+                    <b-icon icon="layers"></b-icon>
+                  </a>
                 </li>
                 <li>
                   Password: <strong>Your dCloud Toolbox password</strong>
@@ -128,9 +124,7 @@
               </p>
               <p>
                 Remote Desktop Workstation Address:
-                <span class="grey-background">
-                  <strong>{{ rdpAddress }}</strong>
-                </span>
+                <strong>{{ rdpAddress }}</strong>
                 <a @click="clickCopy(rdpFqdn, 'Workstation RDP Address')"><b-icon icon="layers"></b-icon></a>
               </p>
               <p>
@@ -303,9 +297,7 @@
                   <li>
                     Username:
                     <strong>
-                      <span class="grey-background">
-                        {{ user.username }}@{{ ldapDomain }}
-                      </span>
+                      {{ user.username }}@{{ ldapDomain }}
                       <a @click="clickCopy(`${user.username}@${ldapDomain}`, 'SPOG Username')">
                         <b-icon icon="layers"></b-icon>
                       </a>
@@ -339,18 +331,14 @@
                 <li>URL: <strong><a href="https://cuic1.dcloud.cisco.com" target="cuic">https://cuic1.dcloud.cisco.com</a></strong></li>
                 <li>Username:
                   <strong>
-                    <span class="grey-background">
-                      rbarrows{{ user.id }}
-                    </span>
+                    rbarrows{{ user.id }}
                     <a @click="clickCopy(`rbarrows${user.id}`, 'CUIC Username')">
                       <b-icon icon="layers"></b-icon>
                     </a>
                   </strong>
                 </li>
                 <li>Password: <strong>
-                  <span class="grey-background">
-                    C1sco12345
-                  </span>
+                  C1sco12345
                   <a @click="clickCopy(`C1sco12345`, 'CUIC Password')">
                     <b-icon icon="layers"></b-icon>
                   </a>
@@ -655,9 +643,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.grey-background {
-  background-color: rgb(240, 240, 240);
-}
-</style>
