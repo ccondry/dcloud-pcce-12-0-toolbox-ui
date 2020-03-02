@@ -1,5 +1,5 @@
 import * as types from '../mutation-types'
-import {Toast} from 'buefy'
+import {ToastProgrammatic as Toast} from 'buefy'
 
 const state = {
   brands: [],
