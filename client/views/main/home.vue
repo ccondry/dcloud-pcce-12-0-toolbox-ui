@@ -131,7 +131,7 @@
                 <span class="grey-background">
                   <strong>{{ rdpAddress }}</strong>
                 </span>
-                <a @click="clickCopy(rdpAddress, 'Workstation RDP Address')"><b-icon icon="layers"></b-icon></a>
+                <a @click="clickCopy(rdpFqdn, 'Workstation RDP Address')"><b-icon icon="layers"></b-icon></a>
               </p>
               <p>
                 <!-- Remote Desktop Workstation Credentials: -->
@@ -226,6 +226,7 @@
                   this demo website
                 </a>
                 for demonstrating cobrowse only.
+              </p>
             </div>
           </article>
         </div>
@@ -415,38 +416,17 @@ export default {
       'inviteToSupportRoom',
       'getProvisionStatus',
       'provisionUser',
-      'saveDemoConfig'
+      'saveDemoConfig',
+      'copyToClipboard'
     ]),
+    clickCopy (string, type) {
+      this.copyToClipboard({string, type})
+    },
     startTimer () {
       // advance the timer every 1 second
       setInterval(() => {
         this.timerNow = new Date().getTime()
       }, 1000)
-    },
-    clickCopy (s, type) {
-      // copy text to clipboard
-      const input = document.createElement('input')
-      document.body.appendChild(input)
-      input.value = s
-      input.focus()
-      input.select()
-      const result = document.execCommand('copy')
-      if (result === 'unsuccessful') {
-        // failed
-        console.error('Failed to copy text.')
-      } else {
-        // success
-        // this.$snackbar.open({
-        //   message: 'Text Copied',
-        //   type: 'is-success',
-        //   position: 'is-top'
-        // })
-        this.$buefy.toast.open({
-          message: type + ' Copied to Your Clipboard',
-          queue: false
-        })
-      }
-      input.remove()
     },
     verticalChanged (e) {
       console.log('vertical changed', e.target.value)
@@ -557,6 +537,7 @@ export default {
       'demoConfig',
       'provisioningDisabled',
       'rdpAddress',
+      'rdpFqdn',
       'vpnAddress',
       'ldapDomain',
       'sessionId',

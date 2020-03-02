@@ -67,7 +67,13 @@ const getters = {
     }
   },
   rdpAddress: (state, getters) => {
-    return 'rdp.dcloud.cisco.com (198.18.134.210)'
+    return `${getters.rdpFqdn} (${getters.rdpIp})`
+  },
+  rdpIp: (state, getters) => {
+    return '198.18.134.210'
+  },
+  rdpFqdn: (state, getters) => {
+    return 'rdp.dcloud.cisco.com'
   }
 }
 
