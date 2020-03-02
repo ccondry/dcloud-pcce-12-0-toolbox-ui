@@ -259,11 +259,36 @@
                 demo.
               </p>
               <ul>
-                <li>Facebook Page: <a :href="facebookLink" target="facebook">{{ facebookLink }}</a></li>
-                <li>Messenger Link: <a :href="messengerLink" target="messenger">{{ messengerLink }}</a></li>
-                <li>Session: <strong>{{ sessionId }}</strong></li>
-                <li>Datacenter: <strong>{{ datacenter }}</strong></li>
-                <li>User ID: <strong>{{ user.id }}</strong></li>
+                <li>
+                  Facebook Page:
+                  <strong>
+                    <a :href="facebookLink" target="facebook">{{ facebookLink }}</a>
+                  </strong>
+                </li>
+                <li>
+                  Messenger Link: 
+                  <strong>
+                    <a :href="messengerLink" target="messenger">{{ messengerLink }}</a>
+                  </strong>
+                </li>
+                <li>
+                  Session: <strong>{{ sessionId }}</strong>
+                  <a @click="clickCopy(sessionId, 'Session ID')">
+                    <b-icon icon="layers"></b-icon>
+                  </a>
+                </li>
+                <li>
+                  Datacenter: <strong>{{ datacenter }}</strong>
+                  <a @click="clickCopy(datacenter, 'Datacenter')">
+                    <b-icon icon="layers"></b-icon>
+                  </a>
+                </li>
+                <li>
+                  User ID: <strong>{{ user.id }}</strong>
+                  <a @click="clickCopy(user.id, 'User ID')">
+                    <b-icon icon="layers"></b-icon>
+                  </a>
+                </li>
               </ul>
             </div>
           </article>
