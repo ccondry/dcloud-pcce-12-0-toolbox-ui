@@ -227,7 +227,7 @@
       </div>
 
       <!-- Mobile App -->
-      <div class="tile is-ancestor">
+      <div class="tile is-ancestor" v-if="isProvisioned">
         <div class="tile is-parent is-12 is-vertical">
           <article class="tile is-child box">
             <h1 class="title">dCloud CC Mobile App Settings</h1>
@@ -249,7 +249,7 @@
       </div>
 
       <!-- Facebook -->
-      <div class="tile is-ancestor">
+      <div class="tile is-ancestor" v-if="isProvisioned">
         <div class="tile is-parent is-12 is-vertical">
           <article class="tile is-child box">
             <h1 class="title">Cumulus Facebook Page</h1>
