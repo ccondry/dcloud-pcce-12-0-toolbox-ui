@@ -404,6 +404,7 @@
 <script>
 import {mapActions, mapGetters} from 'vuex'
 import Agents from '../../components/agents.vue'
+import moment from 'moment'
 
 export default {
   components: {
@@ -503,8 +504,17 @@ export default {
           placeholder: 'your dCloud Toolbox password',
           type: 'password'
         },
-        onConfirm: (password) => {
-          this.provisionUser({password})
+        onConfirm: async (password) => {
+          try {
+            await this.provisionUser({password})
+            this.$buefy.dialog.confirm({
+              message: `Your account has been provisioned successfully, however
+              email routing will not function for you account until after 
+              midnight local datacenter time.`
+            })
+          } catch (e) {
+            console.log('error awaiting provisionUser:', e.message)
+          }
         }
       })
     },
@@ -556,6 +566,22 @@ export default {
       'sessionId',
       'datacenter'
     ]),
+    datacenterMidnight () {
+      const m = moment()
+      if (this.datacenter === 'RTP') {
+        // GMT -5/-6
+        // return m
+      } else if (this.datacenter === 'SJC') {
+        // GMT -8
+      } else if (this.datacenter === 'LON') {
+        // GMT?
+      } else if (this.datacenter === 'SNG') {
+        // GMT +6?
+      } else {
+        // undefined datacenter?
+      }
+      return m
+    },
     datacenterDisplayName () {
       const displayNames = {
         'RTP': 'US East',
