@@ -164,8 +164,9 @@
             </div>
             <div class="content" v-if="verticals.length">
               <p>
-                Choose the vertical you want to use, then click Go to Demo Website
-                to show the customer side of the demo.
+                Choose the vertical and multichannel provider you want to use, 
+                then click Go to Demo Website to show the customer side of the
+                demo.
               </p>
               <div class="select">
                 <select class="input" v-model="vertical" @change="verticalChanged" :disabled="working.app.user">
@@ -175,6 +176,14 @@
                   <option v-for="brand in userBrands" :value="brand.id" v-if="brandFilter === 'all'">{{ `${brand.name} (${brand.id})` }}</option>
                   <option v-for="brand in myBrands" :value="brand.id" v-if="brandFilter === 'mine'">{{ `${brand.name} (${brand.id})` }}</option>
                   <option v-for="brand in filteredSortedBrands" :value="brand.id" v-if="brandFilter === 'other'">{{ `${brand.name} (${brand.id})` }}</option>
+                </select>
+              </div>
+              &nbsp;
+              <div class="select">
+                <select class="input" v-model="multichannel" @change="multichannelChanged" :disabled="working.app.user">
+                  <option value="" disabled>Choose Your Multichannel Provider</option>
+                  <option value="ece">ECE</option>
+                  <option value="upstream">Upstream</option>
                 </select>
               </div>
               &nbsp;
@@ -416,6 +425,7 @@ export default {
       ownerFilter: '',
       brandFilter: 'mine',
       vertical: 'finance',
+      multichannel: 'ece',
       showMore: false,
       timerEnd: 0,
       timerNow: 0
@@ -441,6 +451,18 @@ export default {
       setInterval(() => {
         this.timerNow = new Date().getTime()
       }, 1000)
+    },
+    multichannelChanged (e) {
+      console.log('multichannel changed', e.target.value)
+      // construct data body to send to API REST request
+      const data = {
+        multichannel: e.target.value
+      }
+      // save demo config for user
+      this.saveDemoConfig({
+        data,
+        showNotification: false
+      })
     },
     verticalChanged (e) {
       console.log('vertical changed', e.target.value)
