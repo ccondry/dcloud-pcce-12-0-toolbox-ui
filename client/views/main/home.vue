@@ -700,6 +700,8 @@ export default {
     demoConfig (val) {
       // copy vertical selection to the one in demo config
       this.vertical = val.vertical
+      // copy multichannel selection option from demo config value
+      this.multichannel = val.multichannel
     },
     vertical (val) {
       const selectedVertical = this.sortedBrands.find(v => {
