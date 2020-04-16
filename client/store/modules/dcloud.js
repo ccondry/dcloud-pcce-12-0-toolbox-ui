@@ -119,6 +119,7 @@ const actions = {
     commit(types.SET_INSTANCE_NAME, data)
   },
   updateInstanceName ({getters, dispatch}) {
+    console.log('updateInstanceName - isProduction =', getters.isProduction)
     if (getters.isProduction) {
       // get current hostname of the browser location
       const hostname = window.location.hostname
