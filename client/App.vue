@@ -4,12 +4,25 @@
     <div v-if="authenticated">
       <!-- endpoints have not finished loading yet -->
       <b-loading :is-full-page="true" :active="!authCheckDone" :can-cancel="false"></b-loading>
-      <div v-if="authCheckDone">
+      <div v-if="authCheckDone" style="min-height: calc(100vh - 1.6em);">
         <nprogress-container></nprogress-container>
         <navbar :show="true" :menu-filter.sync="menuFilter"></navbar>
         <sidebar :show="sidebar.opened && !sidebar.hidden" :menu-filter="menuFilter"></sidebar>
         <app-main></app-main>
       </div>
+      <footer class="footer" style="margin-left: 220px; height: 1.6em; padding: 0; background-color: #ebebeb">
+      <div class="content">
+        <small style="padding-right: 2em; padding-left: 1em;">
+          UI version {{ uiVersion }}
+        </small>
+        <small style="padding-right: 2em; padding-left: 1em;">
+          API version {{ apiVersion }}
+        </small>
+        <small style="padding-right: 2em; padding-left: 1em;">
+          Auth API version {{ authApiVersion }}
+        </small>
+      </div>
+    </footer>
     </div>
   </div>
 </template>
@@ -58,7 +71,10 @@ export default {
   },
 
   mounted () {
+    // start authentication checks
     this.authCheck()
+    // get the auth API version info
+    this.getAuthApiVersion()
   },
 
   computed: {
@@ -69,7 +85,10 @@ export default {
       'endpoints',
       'isProvisioned',
       'instances',
-      'instance'
+      'instance',
+      'uiVersion',
+      'apiVersion',
+      'authApiVersion'
     ])
   },
 
@@ -84,7 +103,9 @@ export default {
       'loadVerticals',
       'getInstances',
       'loadDemoConfig',
-      'updateInstanceName'
+      'updateInstanceName',
+      'getAuthApiVersion',
+      'getApiVersion'
     ]),
     async authCheck () {
       try {
@@ -154,6 +175,8 @@ export default {
         // instance found
         // now load provision status
         this.getProvisionStatus()
+        // and load API version info
+        this.getApiVersion()
       }
     }
   }

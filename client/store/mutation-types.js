@@ -149,3 +149,7 @@ export const SET_DUO_ENROLLMENT_DATA = 'SET_DUO_ENROLLMENT_DATA'
 export const SET_INSTANCES = 'SET_INSTANCES'
 // the instance ID for current URL
 export const SET_INSTANCE_NAME = 'SET_INSTANCE_NAME'
+
+// REST API software versions
+export const SET_API_VERSION = 'SET_API_VERSION'
+export const SET_AUTH_API_VERSION = 'SET_AUTH_API_VERSION'

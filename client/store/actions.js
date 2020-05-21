@@ -39,7 +39,7 @@ export const loadToState = async function ({getters, commit, dispatch}, options)
       data = response.data
     }
     commit(options.mutation, data)
-    if (options.showNotification) {
+    if (options.showNotification !== false) {
       dispatch('successNotification', `Successfully loaded ${options.name}`)
     }
     return response
@@ -56,7 +56,9 @@ export const loadToState = async function ({getters, commit, dispatch}, options)
     } catch (e2) {
       // continue
     }
-    dispatch('errorNotification', {title: `Failed to GET ${options.name}`, error: e})
+    if (options.showNotification !== false) {
+      dispatch('errorNotification', {title: `Failed to GET ${options.name}`, error: e})
+    }
   }
 }
 

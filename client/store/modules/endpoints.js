@@ -5,6 +5,7 @@ let urlBase = '/api/v1/pcce-12-0'
 if (!isProduction) {
   // authUrlBase = 'http://localhost:3032/api/v1/auth'
   // urlBase = 'http://localhost:3053/api/v1/pcce-12-0'
+  // use production REST APIs
   authUrlBase = 'https://dcloud-collab-toolbox-rtp.cxdemo.net/api/v1/auth'
   urlBase = 'https://dcloud-collab-toolbox-rtp.cxdemo.net/api/v1/pcce-12-0'
 }
@@ -35,7 +36,9 @@ const endpoints = {
     team: {
       layout: urlBase + '/finesse/team/layout'
     }
-  }
+  },
+  version: urlBase + '/version',
+  authApiVersion: authUrlBase + '/version'
 }
 
 const state = {
