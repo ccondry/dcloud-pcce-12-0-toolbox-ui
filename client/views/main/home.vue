@@ -371,12 +371,21 @@
                     </a>
                   </strong>
                 </li>
-                <li>Password: <strong>
-                  C1sco12345
-                  <a @click="clickCopy(`C1sco12345`, 'CUIC Password')">
-                    <b-icon icon="layers"></b-icon>
-                  </a>
-                  </strong></li>
+                <li>
+                  Password:
+                  <strong>
+                    C1sco12345
+                    <a @click="clickCopy(`C1sco12345`, 'CUIC Password')">
+                      <b-icon icon="layers"></b-icon>
+                    </a>
+                  </strong>
+                </li>
+                <li>
+                  Login Type:
+                  <strong>
+                    LDAP
+                  </strong>
+                </li>
               </ul>
             </div>
           </article>
