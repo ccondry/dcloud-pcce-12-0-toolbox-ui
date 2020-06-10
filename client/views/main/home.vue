@@ -70,7 +70,7 @@
 
       <!-- user is provisioned - show agent info -->
       <div class="tile is-ancestor" v-if="isProvisioned">
-        <div class="tile is-parent is-12 is-vertical">
+        <div class="tile is-parent is-12">
           <article class="tile is-child box">
             <h1 class="title">VPN</h1>
             <div class="content">
@@ -107,7 +107,7 @@
 
       <!-- Workstation -->
       <div class="tile is-ancestor" v-if="isProvisioned">
-        <div class="tile is-parent is-12 is-vertical">
+        <div class="tile is-parent is-12">
           <article class="tile is-child box">
             <h1 class="title">Workstation</h1>
             <div class="content">
@@ -154,7 +154,7 @@
 
       <!-- Demo Website config -->
       <div class="tile is-ancestor" v-if="isProvisioned">
-        <div class="tile is-parent is-vertical">
+        <div class="tile is-parent">
           <article class="tile is-child box">
             <h1 class="title">
               Demo Website
@@ -237,7 +237,7 @@
 
       <!-- Mobile App -->
       <div class="tile is-ancestor" v-if="isProvisioned">
-        <div class="tile is-parent is-12 is-vertical">
+        <div class="tile is-parent is-12">
           <article class="tile is-child box">
             <h1 class="title">dCloud CC Mobile App Settings</h1>
             <div class="content">
@@ -259,7 +259,7 @@
 
       <!-- Facebook -->
       <div class="tile is-ancestor" v-if="isProvisioned">
-        <div class="tile is-parent is-12 is-vertical">
+        <div class="tile is-parent is-12">
           <article class="tile is-child box">
             <h1 class="title">Cumulus Facebook Page</h1>
             <div class="content">
@@ -349,7 +349,7 @@
       </div>
 
       <div class="tile is-ancestor" v-if="isProvisioned">
-        <div class="tile is-parent is-12 is-vertical">
+        <div class="tile is-parent is-12">
           <article class="tile is-child box">
             <h1 class="title">CUIC Reporting</h1>
             <div class="content">
