@@ -123,12 +123,14 @@ const actions = {
     if (getters.isProduction) {
       // get current hostname of the browser location
       const hostname = window.location.hostname
+      console.log('updateInstanceName - hostame =', hostname)
       // get the part before ".cisco.com"
       const part1 = hostname.split('.').shift()
       // get the datacenter part
       const datacenter = part1.split('-').pop().toUpperCase()
       dispatch('setInstanceName', datacenter + '-1')
     } else {
+      console.log('in development, so using RTP-1 instance.')
       dispatch('setInstanceName', 'RTP-1')
     }
   }
