@@ -540,7 +540,7 @@ export default {
             await this.provisionUser({password})
             this.$buefy.dialog.confirm({
               message: `Your account has been provisioned successfully, however
-              email routing will not function for you account until after 
+              email routing will not function for your account until after 
               midnight local datacenter time.`
             })
           } catch (e) {
