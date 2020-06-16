@@ -12,10 +12,6 @@ export const SET_DCLOUD_SESSION = 'SET_DCLOUD_SESSION'
 export const SET_WORKING = 'SET_WORKING'
 export const SET_LOADING = 'SET_LOADING'
 
-// app
-export const SET_ENDPOINTS = 'SET_ENDPOINTS'
-// export const SET_ENDPOINTS_LOADED = 'SET_ENDPOINTS_LOADED'
-
 // user
 export const SET_JWT = 'SET_JWT'
 export const SET_USER = 'SET_USER'
