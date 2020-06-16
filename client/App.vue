@@ -11,18 +11,18 @@
         <app-main></app-main>
       </div>
       <footer class="footer" style="margin-left: 220px; height: 1.6em; padding: 0; background-color: #ebebeb">
-      <div class="content">
-        <small style="padding-right: 2em; padding-left: 1em;">
-          UI version {{ uiVersion }}
-        </small>
-        <small style="padding-right: 2em; padding-left: 1em;">
-          API version {{ apiVersion }}
-        </small>
-        <small style="padding-right: 2em; padding-left: 1em;">
-          Auth API version {{ authApiVersion }}
-        </small>
-      </div>
-    </footer>
+        <div class="content">
+          <small style="padding-right: 2em; padding-left: 1em;">
+            UI version {{ uiVersion }}
+          </small>
+          <small style="padding-right: 2em; padding-left: 1em;">
+            API version {{ apiVersion }}
+          </small>
+          <small style="padding-right: 2em; padding-left: 1em;">
+            Auth API version {{ authApiVersion }}
+          </small>
+        </div>
+      </footer>
     </div>
   </div>
 </template>
