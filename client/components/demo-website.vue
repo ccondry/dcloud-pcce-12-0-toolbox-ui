@@ -15,53 +15,106 @@
           then click Go to Demo Website to show the customer side of the
           demo.
         </p>
-        <div class="select">
-          <select class="input" v-model="vertical" @change="verticalChanged" :disabled="working.app.user">
-            <option value="" disabled selected>Choose Your Demo Vertical</option>
-            <option v-for="brand in systemBrands" :value="brand.id">{{ `${brand.name} (${brand.id})` }}</option>
-            <option disabled>-----------------------------------------</option>
-            <option v-for="brand in userBrands" :value="brand.id" v-if="brandFilter === 'all'">{{ `${brand.name} (${brand.id})` }}</option>
-            <option v-for="brand in myBrands" :value="brand.id" v-if="brandFilter === 'mine'">{{ `${brand.name} (${brand.id})` }}</option>
-            <option v-for="brand in filteredSortedBrands" :value="brand.id" v-if="brandFilter === 'other'">{{ `${brand.name} (${brand.id})` }}</option>
-          </select>
-        </div>
-        &nbsp;
-        <div class="select">
-          <select class="input" v-model="multichannel" @change="multichannelChanged" :disabled="working.app.user">
-            <option value="" disabled>Choose Your Multichannel Provider</option>
-            <option value="ece">ECE</option>
-            <option value="upstream">Upstream</option>
-          </select>
-        </div>
-        <button class="button is-success" @click="clickGo" :disabled="working.app.user">Go to Demo Website</button>
-        <b-field style="margin-top: 0.4em;">
+        <b-field>
+          <b-field style="margin-right: 1em;">
+            <b-select 
+            v-model="vertical" 
+            @change.native="verticalChanged" 
+            :disabled="working.app.user"
+            >
+              <option value="" disabled selected>
+                Choose Your Demo Vertical
+              </option>
+              <option
+              v-for="(brand, index) in systemBrands" 
+              :value="brand.id"
+              :key="'system' + index"
+              >
+                {{ `${brand.name} (${brand.id})` }}
+              </option>
+              <option disabled>-----------------------------------------</option>
+              <option
+              v-if="brandFilter === 'all'"
+              v-for="(brand, index) in userBrands"
+              :value="brand.id"
+              :key="'user' + index"
+              >
+                {{ `${brand.name} (${brand.id})` }}
+              </option>
+              <option
+              v-if="brandFilter === 'mine'"
+              v-for="(brand, index) in myBrands"
+              :value="brand.id"
+              :key="'mine' + index"
+              >
+                {{ `${brand.name} (${brand.id})` }}
+              </option>
+              <option
+              v-if="brandFilter === 'other'"
+              v-for="(brand, index) in filteredSortedBrands"
+              :value="brand.id"
+              :key="'other' + index"
+              >
+                {{ `${brand.name} (${brand.id})` }}
+              </option>
+            </b-select>
+          </b-field>
+
+          <b-field style="margin-right: 1em;">
+            <b-select v-model="multichannel" @change="multichannelChanged" :disabled="working.app.user">
+                <option value="" disabled>Choose Your Multichannel Provider</option>
+                <option value="ece">ECE</option>
+                <option value="upstream">Upstream</option>
+            </b-select>
+          </b-field>
+
+          <b-field>
+            <button class="button is-success" @click="clickGo" :disabled="working.app.user">Go to Demo Website</button>
+          </b-field>
+        </b-field>
+        
+        <b-field>
           <b-checkbox v-model="showMore">Show More</b-checkbox>
         </b-field>
+
         <b-field v-show="showMore">
           <div class="field">
             <div class="field">
-              <b-radio v-model="brandFilter"
+              <b-radio
+              v-model="brandFilter"
               v-if="user.admin"
-              native-value="all">Show all verticals</b-radio>
-            </div>
-            <div class="field">
-              <b-radio v-model="brandFilter"
-              native-value="mine">Show my verticals</b-radio>
-            </div>
-            <div class="field">
-              <b-radio v-model="brandFilter"
-              native-value="other">
-                <span style="float: left;">Show this user's verticals:</span>
-                <b-autocomplete
-                v-model="ownerFilter"
-                :data="autocompleteOwners"
-                >
-                  <template slot="empty">No results found</template>
-                </b-autocomplete>
+              native-value="all"
+              >
+                Show all verticals
               </b-radio>
+            </div>
+            <div class="field">
+              <b-radio
+              v-model="brandFilter"
+              native-value="mine"
+              >
+                Show my verticals
+              </b-radio>
+            </div>
+            <div class="field">
+              <b-radio
+              v-model="brandFilter"
+              native-value="other"
+              >
+                <span style="float: left;">Show this user's verticals:</span>
+              </b-radio>
+
+              <b-autocomplete
+              v-model="ownerFilter"
+              :data="autocompleteOwners"
+              style="width: 20em;"
+              >
+                <template slot="empty">No results found</template>
+              </b-autocomplete>
             </div>
           </div>
         </b-field>
+
         <p>
           Note: You can create and configure your own vertical on the
           <a href="/branding" target="brand-toolbox">
@@ -224,6 +277,9 @@ export default {
       this.vertical = val.vertical
       // copy multichannel selection option from demo config value
       this.multichannel = val.multichannel
+    },
+    ownerFilter () {
+      this.brandFilter = 'other'
     }
   }
 }
