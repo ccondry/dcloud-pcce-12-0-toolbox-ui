@@ -36,8 +36,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~bulma/sass/utilities/variables';
-@import '~bulma/sass/utilities/mixins';
+// @import '~bulma/sass/utilities/variables';
+// @import '~bulma/sass/utilities/mixins';
+@import '~bulma';
 
 .app-main {
   padding-top: 50px;

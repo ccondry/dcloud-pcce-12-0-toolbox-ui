@@ -1,34 +1,11 @@
-import Vue from 'vue'
-import Notification from 'vue-bulma-notification'
-const NotificationComponent = Vue.extend(Notification)
+import { Toast } from 'buefy/dist/components/toast'
 
-const openNotification = (propsData = {
-  title: '',
-  message: '',
-  type: '',
-  direction: '',
-  duration: 4500,
-  container: '.notifications'
-}) => {
-  return new NotificationComponent({
-    el: document.createElement('div'),
-    propsData
+function openNotification (options) {
+  Toast.open({
+    duration: options.duration || 5000,
+    message: options.message,
+    type: 'is-' + options.type
   })
-}
-
-function getErrorMessage (error) {
-  // console.log('raw error keys:', Object.keys(error))
-  // console.log('error response:', error.response)
-
-  if (error.response) {
-    if (error.response.data && error.response.data.body) {
-      return error.response.body
-    } else {
-      return error.response.data
-    }
-  } else {
-    return ''
-  }
 }
 
 const actions = {
@@ -69,7 +46,7 @@ const actions = {
       // exception
       openNotification({
         title: options.title,
-        message: getErrorMessage(options.error),
+        message: JSON.stringify(options.error),
         type: 'danger',
         duration: options.duration || 8000
       })
