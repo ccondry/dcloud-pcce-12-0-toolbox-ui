@@ -444,7 +444,7 @@ export default {
   mounted () {
     // find the currently selected vertical
     const selectedVertical = this.sortedBrands.find(v => {
-      return v.id === val
+      return v.id === this.vertical
     })
     // is this selected vertical owned by someone else?
     if (
