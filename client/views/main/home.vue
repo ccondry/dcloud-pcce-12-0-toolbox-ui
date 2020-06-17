@@ -442,6 +442,21 @@ export default {
   },
 
   mounted () {
+    // find the currently selected vertical
+    const selectedVertical = this.sortedBrands.find(v => {
+      return v.id === val
+    })
+    // is this selected vertical owned by someone else?
+    if (
+      selectedVertical &&
+      selectedVertical.owner !== 'system' &&
+      selectedVertical.owner !== this.user.username
+    ) {
+      // set the brand filter to proper value
+      this.brandFilter = 'other'
+      // set the owner filter to match the brand we loaded
+      this.ownerFilter = selectedVertical.owner
+    }
   },
 
   methods: {
@@ -711,18 +726,6 @@ export default {
       this.vertical = val.vertical
       // copy multichannel selection option from demo config value
       this.multichannel = val.multichannel
-    },
-    vertical (val) {
-      const selectedVertical = this.sortedBrands.find(v => {
-        return v.id === val
-      })
-      // is this selected vertical owned by someone else?
-      if (selectedVertical && selectedVertical.owner !== 'system' &&
-      selectedVertical.owner !== this.user.username) {
-        // selected vertical owned by a user that is not this user
-        this.brandFilter = 'other'
-        this.ownerFilter = selectedVertical.owner
-      }
     }
   }
 }
