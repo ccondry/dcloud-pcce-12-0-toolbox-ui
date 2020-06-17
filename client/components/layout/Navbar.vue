@@ -1,26 +1,30 @@
 <template>
   <section class="hero is-bold app-navbar animated" :class="{ slideInDown: show, slideOutDown: !show }">
     <div class="hero-head">
-      <nav class="nav">
-        <div class="nav-left">
+      <div class="columns">
+        <div class="column is-3">
         </div>
-        <div class="nav-center">
-          <nav class="level">
-            <div class="level-item">
-              <p>
-                <a href="/">dCloud Toolbox</a>
-                - PCCE 12.0v2 Instant
-                - {{ datacenter }} {{ sessionId }}
-              </p>
-            </div>
-          </nav>
+        <div class="column is-6">
+          <p class="level-item has-text-centered">
+              <a href="/">dCloud Toolbox</a>
+              &nbsp;-
+              PCCE 12.0v2 Instant -
+              {{ datacenter }} {{ session }}
+          </p>
         </div>
-        <div class="nav-right is-flex">
-          <span v-if="authenticated" class="nav-item">{{ user.username }} ({{ user.id }})</span>
-          <a v-if="authenticated" @click="clickLogout" class="nav-item">Logout</a>
-          <a v-if="!authenticated && !isProduction" @click="clickLogin" class="nav-item">Login</a>
+        <div class="column is-3">
+          <div v-if="authenticated" class="level-right">
+            {{ user.username }}
+            &nbsp;
+            <a @click="clickLogout">Logout</a>
+            &nbsp;&nbsp;
+          </div>
+          <div v-if="!authenticated && !production" class="level-right">
+            <a @click="clickLogin">Login</a>
+            &nbsp;&nbsp;
+          </div>
         </div>
-      </nav>
+      </div>
     </div>
   </section>
 </template>
@@ -31,8 +35,12 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
-      filter: ''
+      filter: '',
+      pageSelection: 'Verticals'
     }
+  },
+
+  components: {
   },
 
   props: {
@@ -40,35 +48,18 @@ export default {
     menuFilter: String
   },
 
-  mount () {
-    if (!this.authenticated && !this.isProduction) {
-      // pop development login modal
-      this.clickLogin()
-    }
-  },
-
   computed: {
     ...mapGetters([
-      'sidebar',
       'authenticated',
       'user',
-      'instance',
-      'isProduction'
-      // 'sessionId',
-      // 'datacenter'
+      'production',
+      'instance'
     ]),
-    sessionId () {
-      return this.instance.session
-    },
     datacenter () {
       return this.instance.datacenter
     },
-    userPage () {
-      if (this.isProduction) {
-        return '/auth/user'
-      } else {
-        return 'http://localhost:8085/auth/user/right'
-      }
+    session () {
+      return this.instance.session
     }
   },
 
@@ -91,28 +82,21 @@ export default {
         }
       })
     }
-  },
-
-  watch: {
-    filter (val) {
-      this.$emit('update:menuFilter', val)
-    }
   }
 }
 </script>
 
-<style lang="scss" scoped>
-// @import '~bulma/bulma';
-// @import '~bulma/sass/utilities/variables';
-
+<style lang="scss">
 .app-navbar {
   color: #28374B;
+  background-color: white;
   font-weight: bold;
   a {
     color: #7957d5;
   }
   position: fixed;
   min-width: 100%;
+  line-height: 2.35em;
   z-index: 4;
   box-shadow: 0 2px 3px rgba(17, 17, 17, 0.1), 0 0 0 1px rgba(17, 17, 17, 0.1);
 
@@ -133,6 +117,7 @@ export default {
     overflow-x: auto;
     white-space: nowrap;
   }
+
 }
 
 .hero-head {
