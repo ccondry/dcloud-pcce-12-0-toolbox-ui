@@ -35,7 +35,8 @@ module.exports = merge(baseWebpackConfig, {
       title: 'dCloud PCCE 12.0 Instant Demo',
       template: 'index.html',
       inject: true,
-      favicon: 'client/assets/logo.png'
+      favicon: 'client/assets/logo.png',
+      environment: 'development'
     })
   ]
 })
