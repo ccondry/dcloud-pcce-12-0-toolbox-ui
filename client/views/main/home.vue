@@ -421,7 +421,7 @@ export default {
         }
       })
     },
-    clickProvision () {
+    async clickProvision () {
       // reprovision or first time?
       if (this.isProvisioned) {
         // reprovision
