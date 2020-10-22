@@ -1,4 +1,4 @@
-import { ToastProgrammatic as Toast } from 'buefy'
+import { Toast } from 'buefy/dist/components/toast'
 
 function openNotification (options) {
   Toast.open({

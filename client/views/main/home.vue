@@ -93,10 +93,7 @@
                   </a>
                 </li>
                 <li>
-                  Password: <strong>C1sco12345</strong>
-                  <a @click="clickCopy('C1sco12345', 'VPN Password')">
-                    <b-icon icon="layers"></b-icon>
-                  </a>
+                  Password: <strong>Your dCloud Toolbox password</strong>
                 </li>
               </ul>
               <p>
@@ -262,10 +259,8 @@
                     </strong>
                   </li>
                   <li>
-                    Password: <strong>C1sco12345</strong>
-                    <a @click="clickCopy('C1sco12345', 'C1sco12345')">
-                      <b-icon icon="layers"></b-icon>
-                    </a>
+                    Password:
+                    <strong>Your dCloud Toolbox password</strong>
                   </li>
                 </ul>
               </p>
@@ -421,7 +416,7 @@ export default {
         }
       })
     },
-    async clickProvision () {
+    clickProvision () {
       // reprovision or first time?
       if (this.isProvisioned) {
         // reprovision
@@ -438,16 +433,31 @@ export default {
       }
       console.log('user clicked Provision Me button')
       // TODO prompt user if they are already provisioned in another active
-      try {
-        await this.provisionUser()
-        this.$buefy.dialog.confirm({
-          message: `Your account has been provisioned successfully, however
-          email routing will not function for your account until after 
-          midnight local datacenter time.`
-        })
-      } catch (e) {
-        console.log('error awaiting provisionUser:', e.message)
+      // datacenter
+      // skip prompt for admins using switch-user
+      if (this.user.suJwt) {
+        this.provisionUser({password: 'ignore'})
+        return
       }
+      this.$buefy.dialog.prompt({
+        message: `Please enter your Toolbox password to provision your PCCE demo:`,
+        inputAttrs: {
+          placeholder: 'your dCloud Toolbox password',
+          type: 'password'
+        },
+        onConfirm: async (password) => {
+          try {
+            await this.provisionUser({password})
+            this.$buefy.dialog.confirm({
+              message: `Your account has been provisioned successfully, however
+              email routing will not function for your account until after 
+              midnight local datacenter time.`
+            })
+          } catch (e) {
+            console.log('error awaiting provisionUser:', e.message)
+          }
+        }
+      })
     },
     // async clickProvision () {
     //   console.log('user clicked Provision Me button')
