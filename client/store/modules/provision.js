@@ -59,7 +59,7 @@ const actions = {
       dispatch('successNotification', 'Provisioning successful.')
     } catch (e) {
       console.log('error during PCCE provision script', e)
-      dispatch('errorNotification', {title: 'PCCE provision failed', error: e})
+      dispatch('errorNotification', {title: 'PCCE provision failed', error: e.message})
     } finally {
       dispatch('setWorking', {group: 'user', type: 'provision', value: false})
     }
