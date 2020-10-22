@@ -56,9 +56,7 @@ const actions = {
       post(getters.instanceName, getters.jwt, getters.endpoints.instanceRegister, null, query)
       // get new status
       dispatch('getProvisionStatus', {showNotification: false})
-      if (showNotification) {
-        dispatch('successNotification', 'Provisioning successful.')
-      }
+      dispatch('successNotification', 'Provisioning successful.')
     } catch (e) {
       console.log('error during PCCE provision script', e)
       dispatch('errorNotification', {title: 'PCCE provision failed', error: e})
